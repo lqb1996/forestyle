@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Circle;
+use Illuminate\Http\Request;
+
+class CircleController extends Controller
+{
+    /*
+     * 文章列表
+     */
+    public function index(Request $request)
+    {
+        $user = \Auth::user();
+        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with(['user'])->paginate(6);
+        if($request['type'] == 'ajax'){
+            return compact('circles');
+        }
+//        return view('post/index', compact('circles'));
+//        return $posts;
+    }
+
+//    public function imageUpload(Request $request)
+//    {
+//        $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
+//        return asset('storage/'. $path);
+//    }
+
+    public function create()
+    {
+        return view('circle/create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|max:255|min:4',
+            'content' => 'required|min:100',
+        ]);
+        $params = array_merge(request(['title', 'content']), ['user_id' => \Auth::id()]);
+        Circle::create($params);
+        return redirect('/circles');
+    }
+
+    public function edit(Circle $circle)
+    {
+        return view('circle/edit', compact('circle'));
+    }
+
+    public function show(Request $request, \App\Circle $circle)
+    {
+        if($request['type'] == 'ajax'){
+            return compact('circle');
+        }
+        return view('circle/show', compact('circle'));
+    }
+
+    public function update(Request $request, Circle $circle)
+    {
+        $this->validate($request, [
+            'title' => 'required|max:255|min:4',
+            'content' => 'required|min:100',
+        ]);
+
+        $this->authorize('update', $circle);
+
+        $circle->update(request(['title', 'content']));
+        return redirect("/circles/{$circle->id}");
+    }
+
+    /*
+     * 文章评论保存
+     */
+    public function comment()
+    {
+        $this->validate(request(),[
+            'post_id' => 'required|exists:posts,id',
+            'content' => 'required|min:10',
+        ]);
+
+        $user_id = \Auth::id();
+
+        $params = array_merge(
+            request(['post_id', 'content']),
+            compact('user_id')
+        );
+        \App\Comment::create($params);
+        return back();
+    }
+
+    /*
+     * 点赞
+     */
+    public function zan(Post $post)
+    {
+        $zan = new \App\Zan;
+        $zan->user_id = \Auth::id();
+        $post->zans()->save($zan);
+        return back();
+    }
+
+    /*
+     * 取消点赞
+     */
+    public function unzan(Circle $circle)
+    {
+        $circle->zan(\Auth::id())->delete();
+        return back();
+    }
+
+    /*
+     * 搜索页面
+     */
+    public function search()
+    {
+        $this->validate(request(),[
+            'query' => 'required'
+        ]);
+
+        $query = request('query');
+        $circles = Circle::search(request('query'))->paginate(10);
+        return view('circle/search', compact('circles', 'query'));
+    }
+}
