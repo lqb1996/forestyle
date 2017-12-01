@@ -20,6 +20,7 @@ class CreateRelationshipTable extends Migration
             $table->integer('target_id');
             $table->string('target_type');
             $table->timestamps();
+            $table->string('flag');
         });
     }
 
