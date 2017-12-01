@@ -35,7 +35,7 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_2">
                     @foreach($stars as $star)
-                        <?php $suser = $star->suser()->first(); ?>
+                        <?php $suser = $star->target()->first(); ?>
                         <div class="blog-post" style="margin-top: 30px">
                             <p class="">{{$suser->name}}</p>
                             <p class="">关注：{{$suser->stars()->count()}} | 粉丝：{{$suser->fans()->count()}}｜ 文章：{{$suser->posts()->count()}}</p>
@@ -47,7 +47,7 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_3">
                     @foreach($fans as $fan)
-                        <?php $fuser = $fan->fuser()->first(); ?>
+                        <?php $fuser = $fan->target()->first(); ?>
                         <div class="blog-post" style="margin-top: 30px">
                             <p class="">{{$fuser->name}}</p>
                             <p class="">关注：{{$fuser->stars()->count()}} | 粉丝：{{$fuser->fans()->count()}}｜ 文章：{{$fuser->posts()->count()}}</p>

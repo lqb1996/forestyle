@@ -34,7 +34,7 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_2">
                     <?php $__currentLoopData = $stars; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $star): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $suser = $star->suser()->first(); ?>
+                        <?php $suser = $star->target()->first(); ?>
                         <div class="blog-post" style="margin-top: 30px">
                             <p class=""><?php echo e($suser->name); ?></p>
                             <p class="">关注：<?php echo e($suser->stars()->count()); ?> | 粉丝：<?php echo e($suser->fans()->count()); ?>｜ 文章：<?php echo e($suser->posts()->count()); ?></p>
@@ -46,7 +46,7 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_3">
                     <?php $__currentLoopData = $fans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $fuser = $fan->fuser()->first(); ?>
+                        <?php $fuser = $fan->target()->first(); ?>
                         <div class="blog-post" style="margin-top: 30px">
                             <p class=""><?php echo e($fuser->name); ?></p>
                             <p class="">关注：<?php echo e($fuser->stars()->count()); ?> | 粉丝：<?php echo e($fuser->fans()->count()); ?>｜ 文章：<?php echo e($fuser->posts()->count()); ?></p>

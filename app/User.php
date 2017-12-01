@@ -37,7 +37,8 @@ class User extends Authenticatable
      */
     public function fans()
     {
-        return $this->hasMany(\App\Fan::class, 'star_id', 'id');
+//        return $this->hasMany(\App\Fan::class, 'star_id', 'id');
+        return $this->morphMany(\App\Relationship::class,'target')->where('target_type', 'App\User');
     }
 
     /*
@@ -45,7 +46,7 @@ class User extends Authenticatable
      */
     public function hasFan($uid)
     {
-        return $this->fans()->where('fan_id', $uid)->count();
+        return $this->fans()->where('user_id', $uid)->count();
     }
 
     /*
@@ -53,9 +54,11 @@ class User extends Authenticatable
      */
     public function stars()
     {
-        return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
+//        return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
+        return $this->hasMany(\App\Relationship::class, 'user_id', 'id')->where('target_type', 'App\User');
     }
 
+//返回该用户发生的所有关系
     public function relationships()
     {
         return $this->hasMany(\App\Relationship::class,'user_id','id');

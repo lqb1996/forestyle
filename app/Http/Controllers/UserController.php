@@ -17,17 +17,19 @@ class UserController extends Controller
         $posts = $user->posts()->orderBy('created_at', 'desc')->take(10)->get();
         // 这个人的关注／粉丝／文章
         $user = \App\User::withCount(['stars', 'fans', 'posts'])->find($user->id);
-        $fans = $user->fans()->get();
+        $fans = $user->fans($user->id)->get();
         $stars = $user->stars()->get();
 
         return view("user/show", compact('user', 'posts', 'fans', 'stars'));
 //        return response(json_encode(compact('user', 'posts', 'fans', 'stars'), JSON_UNESCAPED_UNICODE));
+//        return $stars;
     }
 
     public function fan(User $user)
     {
         $me = \Auth::user();
-        \App\Fan::firstOrCreate(['fan_id' => $me->id, 'star_id' => $user->id]);
+//        \App\Fan::firstOrCreate(['fan_id' => $me->id, 'star_id' => $user->id]);
+        \App\Relationship::firstOrCreate(['user_id' => $me->id, 'target_id' => $user->id, 'target_type' => 'App\User']);
         return [
             'error' => 0,
             'msg' => ''
@@ -37,7 +39,8 @@ class UserController extends Controller
     public function unfan(User $user)
     {
         $me = \Auth::user();
-        \App\Fan::where('fan_id', $me->id)->where('star_id', $user->id)->delete();
+//        \App\Fan::where('fan_id', $me->id)->where('star_id', $user->id)->delete();
+        \App\Relationship::where('user_id',$me->id)->where('target_id', $user->id)->where('target_type', 'App\User')->delete();
         return [
             'error' => 0,
             'msg' => ''
