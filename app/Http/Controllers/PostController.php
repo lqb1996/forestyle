@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $user = \Auth::user();
-        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["zans", "comments"])->with(['user'])->paginate(6);
+        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['user'])->paginate(6);
         if($request['type'] == 'ajax'){
             return compact('posts');
         }
@@ -84,7 +84,7 @@ class PostController extends Controller
 
         $user_id = \Auth::id();
         $commentable_id = request('post_id');
-        $parent_id = 0;
+//        $parent_id = 0;
         $comment = new Comment();
         $comment->user_id = $user_id;
         if(request('parent_id')){
@@ -114,7 +114,7 @@ class PostController extends Controller
     {
         $zan = new \App\Zan;
         $zan->user_id = \Auth::id();
-        $post->zans()->save($zan);
+//        $post->zans()->save($zan);
 //        $post->target()->save($zan);
 
 
@@ -132,7 +132,7 @@ class PostController extends Controller
      */
     public function unzan(Post $post)
     {
-        $post->zan(\Auth::id())->delete();
+//        $post->zan(\Auth::id())->delete();
         $post->target(\Auth::id())->delete();
         return back();
     }

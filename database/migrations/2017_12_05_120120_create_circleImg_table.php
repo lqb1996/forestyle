@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCirclesTable extends Migration
+class CreateCircleImgTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCirclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('circles', function (Blueprint $table) {
+        Schema::create('circleImgs', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('content');
-            $table->integer('user_id');
+            $table->integer('circle_id');
+            $table->string('imgUrl');
             $table->timestamps();
-            $table->tinyInteger('status')->default(0);  //圈子状态 0 未知／1 通过／ -1 删除
         });
     }
 
@@ -29,6 +28,6 @@ class CreateCirclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('circles');
+        Schema::dropIfExists('circleImgs');
     }
 }

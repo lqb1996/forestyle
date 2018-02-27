@@ -4,7 +4,7 @@
 
     <div class="col-sm-8">
         <blockquote>
-            <p><img src="{{$user->avatar}}" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> {{$user->name}}
+            <p><img src="{{$user->avatarUrl}}" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> {{$user->nickName}}
             </p>
 
 

@@ -2,7 +2,7 @@
 
     <div class="col-sm-8">
         <blockquote>
-            <p><img src="<?php echo e($user->avatar); ?>" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> <?php echo e($user->name); ?>
+            <p><img src="<?php echo e($user->avatarUrl); ?>" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> <?php echo e($user->nickName); ?>
 
             </p>
 

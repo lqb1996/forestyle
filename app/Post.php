@@ -53,18 +53,18 @@ class Post extends Model
     /*
      * 点赞
      */
-    public function zans()
-    {
-        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
-    }
+//    public function zans()
+//    {
+//        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
+//    }
 
     /*
      * 判断一个用户是否已经给这篇文章点赞了
      */
-    public function zan($user_id)
-    {
-        return $this->hasOne(\App\Zan::class)->where('user_id', $user_id);
-    }
+//    public function zan($user_id)
+//    {
+//        return $this->hasOne(\App\Zan::class)->where('user_id', $user_id);
+//    }
 
     /*
      * 一篇文章有哪些主题

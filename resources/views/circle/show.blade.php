@@ -20,7 +20,7 @@
                     @endif
             </div>
 
-            <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">{{$post->user->nickName}}</a></p>
+            <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">{{$post->user->name}}</a></p>
 
             <p>{!! $post->content !!}</p>
             <div>
@@ -41,7 +41,7 @@
             <ul class="list-group">
                 @foreach($post->comments as $comment)
                 <li class="list-group-item">
-                    <h5>{{$comment->created_at}} by {{$comment->user->nickName}}</h5>
+                    <h5>{{$comment->created_at}} by {{$comment->user->name}}</h5>
                     <div>
                         {{$comment->content}}
                     </div>

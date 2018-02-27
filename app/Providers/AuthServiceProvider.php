@@ -25,8 +25,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        $aaaaaa=0;
-        $bbbbbb=0;
 
         $permissions = \App\AdminPermission::with('roles')->get();
         foreach ($permissions as $permission) {

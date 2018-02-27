@@ -22,8 +22,8 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <div>
-                    <img src="<?php echo e($user->avatar); ?>" alt="" class="img-rounded" style="border-radius:500px; height: 30px">
-                    <a href="#" class="blog-nav-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo e($user->name); ?>  <span class="caret"></span></a>
+                    <img src="<?php echo e($user->avatarUrl); ?>" alt="" class="img-rounded" style="border-radius:500px; height: 30px">
+                    <a href="#" class="blog-nav-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo e($user->nickName); ?>  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/<?php echo e($user->id); ?>">我的主页</a></li>
                         <li><a href="/user/<?php echo e($user->id); ?>/setting">个人设置</a></li>

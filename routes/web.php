@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
     Route::get('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 
+    //圈子
+    Route::get('/circles', '\App\Http\Controllers\circleController@index');
+    Route::get('/circles/show', '\App\Http\Controllers\circleController@show');
+
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
 });

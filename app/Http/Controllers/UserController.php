@@ -56,19 +56,21 @@ class UserController extends Controller
     public function settingStore(Request $request, User $user)
     {
         $this->validate(request(),[
-            'name' => 'min:3',
+            'nickName' => 'min:3',
         ]);
 
-        $name = request('name');
-        if ($name != $user->name) {
-            if(\App\User::where('name', $name)->count() > 0) {
+        $nickName = request('nickName');
+        if ($nickName != $user->nickName) {
+            if(\App\User::where('nickName', $nickName)->count() > 0) {
                 return back()->withErrors(array('message' => '用户名称已经被注册'));
             }
-            $user->name = request('name');
+            $user->nickName = request('nickName');
         }
-        if ($request->file('avatar')) {
-            $path = $request->file('avatar')->storePublicly(md5(\Auth::id() . time()));
-            $user->avatar = "/storage/". $path;
+        if ($request->file('avatarUrl')) {
+//            return back()->withErrors(array('message' => $request->file('avatarUrl')));
+            $path = $request->file('avatarUrl')->storePublicly(md5(\Auth::id() . time()));
+//            $user->avatarUrl = "/storage/app/public/". $path;
+            $user->avatarUrl = "/". $path;
         }
 
         $user->save();

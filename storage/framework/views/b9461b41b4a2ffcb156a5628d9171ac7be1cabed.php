@@ -37,8 +37,8 @@
         <?php echo e(csrf_field()); ?>
 
         <h2 class="form-signin-heading">请注册</h2>
-        <label for="name" class="sr-only">名字</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="名字" required autofocus>
+        <label for="name" class="sr-only">昵称</label>
+        <input type="text" name="nickName" id="name" class="form-control" placeholder="名字" required autofocus>
         <label for="inputEmail" class="sr-only">邮箱</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="邮箱" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>

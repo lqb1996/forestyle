@@ -13,12 +13,12 @@ class CircleController extends Controller
     public function index(Request $request)
     {
         $user = \Auth::user();
-        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with(['user'])->paginate(6);
+        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with(['user','circleImgs'])->paginate(6);
         if($request['type'] == 'ajax'){
             return compact('circles');
         }
-//        return view('post/index', compact('circles'));
-//        return $posts;
+        return view('circle/index', compact('circles'));
+        return $circles;
     }
 
 //    public function imageUpload(Request $request)
@@ -38,7 +38,7 @@ class CircleController extends Controller
             'title' => 'required|max:255|min:4',
             'content' => 'required|min:100',
         ]);
-        $params = array_merge(request(['title', 'content']), ['user_id' => \Auth::id()]);
+        $params = array_merge(request(['content', '']), ['user_id' => \Auth::id()]);
         Circle::create($params);
         return redirect('/circles');
     }
@@ -82,7 +82,7 @@ class CircleController extends Controller
         $user_id = \Auth::id();
 
         $params = array_merge(
-            request(['post_id', 'content']),
+            request(['circle_id', 'content']),
             compact('user_id')
         );
         \App\Comment::create($params);

@@ -18,10 +18,7 @@ class CreateUsersTable extends Migration
 //            $table->string('name');
             $table->string('email')->unique();
 //            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
 //            $table->string('avatar', 100)->default("");
-
             $table->string('openId');
             $table->string('nickName');
             $table->integer('gender');
@@ -31,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('country');
             $table->string('avatarUrl');
             $table->string('loginStamp');
-
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

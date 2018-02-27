@@ -17,7 +17,7 @@
                     <?php endif; ?>
             </div>
 
-            <p class="blog-post-meta"><?php echo e($post->created_at->toFormattedDateString()); ?> by <a href="#"><?php echo e($post->user->name); ?></a></p>
+            <p class="blog-post-meta"><?php echo e($post->created_at->toFormattedDateString()); ?> by <a href="#"><?php echo e($post->user->nickName); ?></a></p>
 
             <p><?php echo $post->content; ?></p>
             <div>
@@ -38,7 +38,7 @@
             <ul class="list-group">
                 <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="list-group-item">
-                    <h5><?php echo e($comment->created_at); ?> by <?php echo e($comment->user->name); ?></h5>
+                    <h5><?php echo e($comment->created_at); ?> by <?php echo e($comment->user->nickName); ?></h5>
                     <div>
                         <?php echo e($comment->content); ?>
 

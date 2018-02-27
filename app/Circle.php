@@ -23,12 +23,15 @@ class Circle extends Model
     public function toSearchableArray()
     {
         return [
-            'title' => $this->imgUrl,
+            'title' => $this->user(),
             'content' => $this->content,
         ];
     }
 
-
+    public function circleImgs()
+    {
+        return $this->hasMany(\App\CircleImg::class, 'circle_id','id');
+    }
     /*
      * 所有评论
      */
@@ -67,34 +70,6 @@ class Circle extends Model
     {
         return $this->morphMany(\App\Relationship::class,'target');
     }
-
-    /*
-     * 判断一个用户是否已经给这篇文章点赞了
-     */
-//    public function zan($user_id)
-//    {
-//        return $this->hasOne(\App\Zan::class)->where('user_id', $user_id);
-//    }
-
-    /*
-     * 一篇文章有哪些主题
-     */
-//    public function topics()
-//    {
-//        return $this->belongsToMany(\App\Topic::class, 'post_topics', 'post_id', 'topic_id')->withPivot(['topic_id', 'post_id']);
-//    }
-//
-//    public function postTopics()
-//    {
-//        return $this->hasMany(\App\PostTopic::class, 'post_id');
-//    }
-//
-//    public function scopeTopicNotBy(Builder $query, $topic_id)
-//    {
-//        return $query->doesntHave('postTopics', 'and', function($q) use ($topic_id) {
-//            $q->where("topic_id", $topic_id);
-//        });
-//    }
 
 
     public function scopeAuthorBy($query, $user_id)
