@@ -43,8 +43,17 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 
     //圈子
-    Route::get('/circles', '\App\Http\Controllers\circleController@index');
-    Route::get('/circles/show', '\App\Http\Controllers\circleController@show');
+    Route::get('/circles', '\App\Http\Controllers\CircleController@index');
+    Route::get('/circles/create', '\App\Http\Controllers\PostController@create');
+    Route::post('/circles', '\App\Http\Controllers\PostController@store');
+    Route::get('/circles/search', '\App\Http\Controllers\PostController@search');
+    Route::get('/circles/{circle}', '\App\Http\Controllers\PostController@show');
+    Route::get('/circles/{circle}/edit', '\App\Http\Controllers\PostController@edit');
+    Route::put('/circles/{circle}', '\App\Http\Controllers\PostController@update');
+    Route::post('/circles/img/upload', '\App\Http\Controllers\PostController@imageUpload');
+    Route::post('/circles/comment', '\App\Http\Controllers\PostController@comment');
+    Route::get('/circles/{circle}/zan', '\App\Http\Controllers\PostController@zan');
+    Route::get('/circles/{circle}/unzan', '\App\Http\Controllers\PostController@unzan');
 
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');

@@ -112,8 +112,8 @@ class PostController extends Controller
      */
     public function zan(Post $post)
     {
-        $zan = new \App\Zan;
-        $zan->user_id = \Auth::id();
+//        $zan = new \App\Zan;
+//        $zan->user_id = \Auth::id();
 //        $post->zans()->save($zan);
 //        $post->target()->save($zan);
 

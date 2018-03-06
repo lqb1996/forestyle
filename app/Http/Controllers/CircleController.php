@@ -21,11 +21,11 @@ class CircleController extends Controller
         return $circles;
     }
 
-//    public function imageUpload(Request $request)
-//    {
-//        $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
-//        return asset('storage/'. $path);
-//    }
+    public function imageUpload(Request $request)
+    {
+        $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
+        return asset('storage/'. $path);
+    }
 
     public function create()
     {
@@ -75,7 +75,7 @@ class CircleController extends Controller
     public function comment()
     {
         $this->validate(request(),[
-            'post_id' => 'required|exists:posts,id',
+            'circle_id' => 'required|exists:circles,id',
             'content' => 'required|min:10',
         ]);
 
@@ -92,11 +92,14 @@ class CircleController extends Controller
     /*
      * 点赞
      */
-    public function zan(Post $post)
+    public function zan(Circle $circle)
     {
-        $zan = new \App\Zan;
-        $zan->user_id = \Auth::id();
-        $post->zans()->save($zan);
+        $relationship = new Relationship();
+        //commentable_type取值例如：App\Post，App\Page等等
+//        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
+        $relationship->user_id = \Auth::id();
+
+        $circle->targets()->save($relationship);
         return back();
     }
 
@@ -105,7 +108,7 @@ class CircleController extends Controller
      */
     public function unzan(Circle $circle)
     {
-        $circle->zan(\Auth::id())->delete();
+        $circle->target(\Auth::id())->delete();
         return back();
     }
 

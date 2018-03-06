@@ -9,6 +9,9 @@
                 <a class="blog-nav-item" href="/posts/create">写文章</a>
             </li>
             <li>
+                <a class="blog-nav-item" href="/circles">朋友圈</a>
+            </li>
+            <li>
                 <a class="blog-nav-item" href="/notices">通知</a>
             </li>
             <li>
