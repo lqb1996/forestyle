@@ -13,6 +13,13 @@ class CreatePermissionAndRoles extends Migration
      */
     public function up()
     {
+        Schema::create("admin_permissions", function(Blueprint $table){
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
+        });
+        
         Schema::create("admin_roles", function(Blueprint $table){
            $table->increments('id');
            $table->string('name');
@@ -20,12 +27,7 @@ class CreatePermissionAndRoles extends Migration
            $table->timestamps();
         });
 
-        Schema::create("admin_permissions", function(Blueprint $table){
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->timestamps();
-        });
+
 
         Schema::create("admin_permission_role", function(Blueprint $table){
             $table->increments('id');
