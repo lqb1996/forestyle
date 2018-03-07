@@ -18,24 +18,24 @@ class CreatePasswordResetsTable extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-//            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-//            $table->string('avatar', 100)->default("");
-            $table->string('openId');
-            $table->string('nickName');
-            $table->integer('gender');
-            $table->string('language');
-            $table->string('city');
-            $table->string('province');
-            $table->string('country');
-            $table->string('avatarUrl');
-            $table->string('loginStamp');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+//        Schema::create('users', function (Blueprint $table) {
+//            $table->increments('id');
+////            $table->string('name');
+//            $table->string('email')->unique();
+//            $table->string('password');
+////            $table->string('avatar', 100)->default("");
+//            $table->string('openId');
+//            $table->string('nickName');
+//            $table->integer('gender');
+//            $table->string('language');
+//            $table->string('city');
+//            $table->string('province');
+//            $table->string('country');
+//            $table->string('avatarUrl');
+//            $table->string('loginStamp');
+//            $table->rememberToken();
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -46,6 +46,6 @@ class CreatePasswordResetsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('password_resets');
-        Schema::dropIfExists('users');
+//        Schema::dropIfExists('users');
     }
 }
