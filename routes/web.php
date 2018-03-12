@@ -17,8 +17,8 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/posts', '\App\Http\Controllers\PostController@index');
     Route::get('/posts/senJiuTang', '\App\Http\Controllers\PostController@senJiuTang');
     Route::get('/posts/activity', '\App\Http\Controllers\PostController@activity');
-    Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
     Route::get('/posts/search', '\App\Http\Controllers\PostController@search');
+    Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
     Route::post('/posts/img/upload', '\App\Http\Controllers\PostController@imageUpload');
     Route::post('/posts/comment', '\App\Http\Controllers\PostController@comment');
     Route::post('/posts', '\App\Http\Controllers\PostController@store');
