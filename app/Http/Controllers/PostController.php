@@ -6,21 +6,49 @@ use App\Comment;
 use App\Relationship;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Topic;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     /*
-     * 文章列表
+     * 首页接口
      */
     public function index(Request $request)
     {
         $user = \Auth::user();
+        $banners = Topic::with('posts')->find(1);
+        $recommends = Topic::with('children')->find(2);
         $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['user'])->paginate(6);
         if($request['type'] == 'ajax'){
-            return compact('posts');
+            return compact('posts','banners','recommends');
         }
-        return view('post/index', compact('posts'));
+        return view('post/index', compact('posts','banners','recommends'));
+//        return $posts;
+    }
+    /*
+     * 森究堂接口
+     */
+    public function senjiutang(Request $request)
+    {
+        $user = \Auth::user();
+//        $banners = Topic::find(1)->with('posts')->get();
+        $topics = Topic::where('parent_id', 8)->with('posts')->orderBy('created_at', 'desc')->get();
+        return compact('topics');
+    }
+    /*
+     * 活动接口
+     */
+    public function activity(Request $request)
+    {
+        $user = \Auth::user();
+        $banners = Topic::where('id', 1)->with('posts')->get();
+        $recommends = Topic::where('id', 2)->with('children')->get();
+        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['user'])->paginate(6);
+        if($request['type'] == 'ajax'){
+            return compact('posts','banners','recommends');
+        }
+        return view('post/index', compact('posts','banners','recommends'));
 //        return $posts;
     }
 

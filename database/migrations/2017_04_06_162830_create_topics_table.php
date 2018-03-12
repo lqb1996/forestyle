@@ -16,6 +16,7 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id');
+            $table->string('imgUrl');
             $table->string('name', 100); // 主题的姓名
             $table->timestamps();
         });
