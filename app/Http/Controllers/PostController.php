@@ -29,11 +29,11 @@ class PostController extends Controller
     /*
      * 森究堂接口
      */
-    public function senjiutang(Request $request)
+    public function senJiuTang(Request $request)
     {
         $user = \Auth::user();
 //        $banners = Topic::find(1)->with('posts')->get();
-        $topics = Topic::where('parent_id', 8)->with('posts')->orderBy('created_at', 'desc')->get();
+        $topics = Topic::with('posts')->where('parent_id', 8)->orderBy('created_at', 'desc')->get();
         return compact('topics');
     }
     /*
@@ -42,14 +42,8 @@ class PostController extends Controller
     public function activity(Request $request)
     {
         $user = \Auth::user();
-        $banners = Topic::where('id', 1)->with('posts')->get();
-        $recommends = Topic::where('id', 2)->with('children')->get();
-        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['user'])->paginate(6);
-        if($request['type'] == 'ajax'){
-            return compact('posts','banners','recommends');
-        }
-        return view('post/index', compact('posts','banners','recommends'));
-//        return $posts;
+        $topics = Topic::with('posts')->where('parent_id', 7)->orderBy('created_at', 'desc')->get();
+        return compact('topics');
     }
 
     public function imageUpload(Request $request)

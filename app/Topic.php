@@ -9,10 +9,6 @@ class Topic extends Model
     /*
      * 属于这个主题的所有文章
      */
-    public function postTopics()
-    {
-        return $this->belongsToMany(\App\Post::class, 'post_topics', 'topic_id', 'post_id');
-    }
 
     public function posts()
     {

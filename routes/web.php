@@ -15,15 +15,16 @@ Route::get('/', "\App\Http\Controllers\LoginController@index");
 Route::group(['middleware' => 'auth:web'], function(){
     // 文章
     Route::get('/posts', '\App\Http\Controllers\PostController@index');
-    Route::get('/posts/senjiutang', '\App\Http\Controllers\PostController@senjiutang');
+    Route::get('/posts/senJiuTang', '\App\Http\Controllers\PostController@senJiuTang');
+    Route::get('/posts/activity', '\App\Http\Controllers\PostController@activity');
     Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
-    Route::post('/posts', '\App\Http\Controllers\PostController@store');
     Route::get('/posts/search', '\App\Http\Controllers\PostController@search');
+    Route::post('/posts/img/upload', '\App\Http\Controllers\PostController@imageUpload');
+    Route::post('/posts/comment', '\App\Http\Controllers\PostController@comment');
+    Route::post('/posts', '\App\Http\Controllers\PostController@store');
     Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
     Route::get('/posts/{post}/edit', '\App\Http\Controllers\PostController@edit');
     Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
-    Route::post('/posts/img/upload', '\App\Http\Controllers\PostController@imageUpload');
-    Route::post('/posts/comment', '\App\Http\Controllers\PostController@comment');
     Route::get('/posts/{post}/zan', '\App\Http\Controllers\PostController@zan');
     Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
 
