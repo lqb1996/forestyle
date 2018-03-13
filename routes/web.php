@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:web'], function(){
 
     // 专题
     Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
+    Route::get('/topic/index/{topic}', '\App\Http\Controllers\TopicController@index');
     Route::get('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 
     //圈子

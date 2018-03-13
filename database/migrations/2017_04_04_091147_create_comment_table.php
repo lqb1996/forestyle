@@ -18,7 +18,6 @@ class CreateCommentTable extends Migration
             $table->integer('commentable_id');
             $table->string('commentable_type');
             $table->text('content');
-            $table->integer('parent_id');
             $table->integer('user_id');
             $table->timestamps();
         });

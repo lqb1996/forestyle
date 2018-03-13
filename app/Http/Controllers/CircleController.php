@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Circle;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class CircleController extends Controller
@@ -13,23 +14,16 @@ class CircleController extends Controller
     public function index(Request $request)
     {
         $user = \Auth::user();
-        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with(['user','circleImgs'])->paginate(6);
-        if($request['type'] == 'ajax'){
-            return compact('circles');
-        }
-        return view('circle/index', compact('circles'));
-        return $circles;
+        $banners = Topic::with('posts')->find(1);
+        $hotTopic = Topic::where('parent_id', 13)->get();
+        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('circleImgs')->paginate(20);
+        return compact('banners', 'hotTopic', 'circles');
     }
 
     public function imageUpload(Request $request)
     {
         $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
         return asset('storage/'. $path);
-    }
-
-    public function create()
-    {
-        return view('circle/create');
     }
 
     public function store(Request $request)
@@ -50,10 +44,7 @@ class CircleController extends Controller
 
     public function show(Request $request, \App\Circle $circle)
     {
-        if($request['type'] == 'ajax'){
-            return compact('circle');
-        }
-        return view('circle/show', compact('circle'));
+        return compact('circle');
     }
 
     public function update(Request $request, Circle $circle)

@@ -20,6 +20,13 @@ class TopicController extends Controller
         return view('topic/show', compact('topic', 'posts', 'myposts'));
     }
 
+    //topic详情接口
+    public function index(Topic $topic)
+    {
+        $posts = $topic->posts()->orderBy('created_at', 'desc')->with(['user'])->take(10)->get();
+        return compact('topic', 'posts');
+    }
+
     /*
      * 投稿
      */

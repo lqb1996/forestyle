@@ -15,15 +15,15 @@ class Comment extends Model
     }
 
     //自关联
-    public function parent()
-    {
-        return $this->hasOne(get_class($this), $this->getKeyName(), 'parent_id');
-    }
-
-    public function children()
-    {
-        return $this->hasMany(get_class($this), 'parent_id', $this->getKeyName());
-    }
+//    public function parent()
+//    {
+//        return $this->hasOne(get_class($this), $this->getKeyName(), 'parent_id');
+//    }
+//
+//    public function children()
+//    {
+//        return $this->hasMany(get_class($this), 'parent_id', $this->getKeyName());
+//    }
 
     public function user()
     {
