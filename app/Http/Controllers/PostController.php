@@ -42,7 +42,7 @@ class PostController extends Controller
     public function activity(Request $request)
     {
         $user = \Auth::user();
-        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->find(7);
+        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->find(7)->paginate();
         return compact('topics');
     }
 
@@ -75,6 +75,7 @@ class PostController extends Controller
 
     public function show(Request $request, \App\Post $post)
     {
+        $post = Post::with('comments', 'targets')->find($post->id);
         if($request['type'] == 'ajax'){
             return compact('post');
         }
@@ -106,15 +107,8 @@ class PostController extends Controller
 
         $user_id = \Auth::id();
         $commentable_id = request('post_id');
-//        $parent_id = 0;
         $comment = new Comment();
         $comment->user_id = $user_id;
-        if(request('parent_id')){
-            $comment->parent_id = request('parent_id');
-        }
-        else {
-            $comment->parent_id = 0;
-        }
         $comment->content = request('content');
         $post->id = request('post_id');
 

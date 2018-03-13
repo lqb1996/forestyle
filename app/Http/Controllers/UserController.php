@@ -21,8 +21,6 @@ class UserController extends Controller
         $stars = $user->stars()->get();
 
         return view("user/show", compact('user', 'posts', 'fans', 'stars'));
-//        return response(json_encode(compact('user', 'posts', 'fans', 'stars'), JSON_UNESCAPED_UNICODE));
-//        return $stars;
     }
 
     public function fan(User $user)

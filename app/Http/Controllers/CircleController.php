@@ -44,6 +44,7 @@ class CircleController extends Controller
 
     public function show(Request $request, \App\Circle $circle)
     {
+        $circle = Circle::with('comments', 'circleImgs', 'targets')->find($circle->id);
         return compact('circle');
     }
 

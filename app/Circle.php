@@ -56,10 +56,10 @@ class Circle extends Model
     /*
      * 点赞
      */
-    public function zans()
-    {
-        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
-    }
+//    public function zans()
+//    {
+//        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
+//    }
 
     public function target($user_id)
     {
