@@ -64,7 +64,7 @@ class User extends Authenticatable
         return $this->hasMany(\App\Relationship::class, 'user_id', 'id')->where('target_type', 'App\User');
     }
 
-//返回该用户发生的所有关系
+//返回该用户的所有关系
     public function relationships()
     {
         return $this->hasMany(\App\Relationship::class,'user_id','id');

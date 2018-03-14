@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');
 
     //多态
-    Route::get('/user/{user}/rel','\App\Http\Controllers\ZanController@zan');
+//    Route::get('/user/{user}/rel','\App\Http\Controllers\ZanController@zan');
 
     // 个人设置
     Route::get('/user/{user}/setting', '\App\Http\Controllers\UserController@setting');

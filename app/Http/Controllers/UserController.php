@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Circle;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -10,16 +11,19 @@ class UserController extends Controller
     /*
      * 个人介绍页面
      */
-    public function show(User $user)
+    public function show(Request $request, User $user)
     {
-
         // 这个人的文章
         $posts = $user->posts()->orderBy('created_at', 'desc')->take(10)->get();
         // 这个人的关注／粉丝／文章
         $user = \App\User::withCount(['stars', 'fans', 'posts'])->find($user->id);
+        $circles = $user->circles()->with( 'circleImgs')->orderBy('created_at', 'desc')->take(20)->get();
         $fans = $user->fans($user->id)->get();
         $stars = $user->stars()->get();
 
+        if($request['type'] == 'ajax'){
+            return compact('user', 'posts', 'circles', 'fans', 'stars');
+        }
         return view("user/show", compact('user', 'posts', 'fans', 'stars'));
     }
 
