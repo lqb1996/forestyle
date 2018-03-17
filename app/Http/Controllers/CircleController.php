@@ -16,7 +16,7 @@ class CircleController extends Controller
         $user = \Auth::user();
         $banners = Topic::with('posts')->find(1);
         $hotTopic = Topic::where('parent_id', 13)->get();
-        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('circleImgs')->paginate(20);
+        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('user', 'circleImgs')->withCount(["targets", "comments"])->paginate(20);
         return compact('banners', 'hotTopic', 'circles');
     }
 
@@ -44,7 +44,7 @@ class CircleController extends Controller
 
     public function show(Request $request, \App\Circle $circle)
     {
-        $circle = Circle::with('comments', 'circleImgs', 'targets')->find($circle->id);
+        $circle = Circle::with('user', 'comments', 'circleImgs', 'targets')->find($circle->id);
         return compact('circle');
     }
 
