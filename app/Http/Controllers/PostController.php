@@ -42,7 +42,7 @@ class PostController extends Controller
     public function activity(Request $request)
     {
         $user = \Auth::user();
-        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->find(7)->paginate();
+        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->where('id', 7)->paginate(10);
         return compact('topics');
     }
 
@@ -75,7 +75,7 @@ class PostController extends Controller
 
     public function show(Request $request, \App\Post $post)
     {
-        $post = Post::with('comments', 'targets')->find($post->id);
+        $post = Post::with('comments', 'targets', 'user')->find($post->id);
         if($request['type'] == 'ajax'){
             return compact('post');
         }
