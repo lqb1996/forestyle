@@ -41,9 +41,11 @@ class LoginController extends Controller
         if (true == \Auth::attempt($user)) {
             return compact($user);
         }
-        $user = request(['nickName', 'openId', 'avatarUrl','gender','language','email','city','province','country']);
-        \App\User::create(compact($user));
-        return \Auth::attempt($user);
+        else {
+            $user = request(['nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
+            \App\User::create($user);
+            return compact(\Auth::attempt($user));
+        }
 
     }
 
