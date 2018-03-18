@@ -42,7 +42,7 @@ class PostController extends Controller
     public function activity(Request $request)
     {
         $user = \Auth::user();
-        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->where('id', 7)->paginate(10);
+        $topics = Topic::with('posts')->orderBy('created_at', 'desc')->find(7);
         return compact('topics');
     }
 
