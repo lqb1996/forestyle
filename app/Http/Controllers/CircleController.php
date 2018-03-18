@@ -66,17 +66,11 @@ class CircleController extends Controller
      */
     public function comment(Circle $circle)
     {
-        $this->validate(request(),[
-            'circle_id' => 'required|exists:circles,id',
-            'content' => 'required|min:10',
-        ]);
-
-        $user_id = \Auth::id();
-
-        $this->validate(request(),[
-            'post_id' => 'required|exists:posts,id',
-            'content' => 'required|min:10',
-        ]);
+//        $this->validate(request(),[
+//            'circle_id' => 'required|exists:circles,id',
+//            'content' => 'required|min:10',
+//        ]);
+        return compact('circle');
 
         $user_id = \Auth::id();
         $commentable_id = request('circle_id');
