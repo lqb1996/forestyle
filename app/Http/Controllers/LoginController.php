@@ -46,9 +46,10 @@ class LoginController extends Controller
         $city = request('city');
         $province = request('province');
         $country = request('country');
-        $password = 'cfph111';
+        $psd = '1234567890';
+        $password = bcrypt($psd);
 
-        if (true == \Auth::attempt(array('email' => $email,'password' => $password))) {
+        if (true == \Auth::attempt(array('email' => $email,'password' => $psd))) {
             $flag = true;
             return compact('email', 'flag');
         }
