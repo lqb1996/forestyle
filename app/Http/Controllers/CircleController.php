@@ -64,7 +64,7 @@ class CircleController extends Controller
     /*
      * 文章评论保存
      */
-    public function comment(Circle $circle)
+    public function comment(Request $request, Circle $circle)
     {
 //        $this->validate(request(),[
 //            'circle_id' => 'required|exists:circles,id',
