@@ -34,10 +34,10 @@ class LoginController extends Controller
 
     public function loginWeChat(Request $request)
     {
-        $this->validate($request, [
-            'openId' => ''
-        ]);
-        $user = request('openId');
+//        $this->validate($request, [
+//            'openId' => ''
+//        ]);
+        $user = request(['openId']);
         if (true == \Auth::attempt($user)) {
             return compact($user);
         }
