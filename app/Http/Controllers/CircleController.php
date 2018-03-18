@@ -64,19 +64,19 @@ class CircleController extends Controller
     /*
      * 文章评论保存
      */
-    public function comment(Request $request, Circle $circle)
+    public function comment(Request $request)
     {
 //        $this->validate(request(),[
 //            'circle_id' => 'required|exists:circles,id',
 //            'content' => 'required|min:10',
 //        ]);
-        return compact('circle');
 
         $user_id = \Auth::id();
         $commentable_id = request('circle_id');
         $comment = new Comment();
         $comment->user_id = $user_id;
         $comment->content = request('content');
+        $circle = new circle();
         $circle->id = request('circle_id');
 
 //        $params = array_merge(
