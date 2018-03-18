@@ -75,7 +75,7 @@ class PostController extends Controller
 
     public function show(Request $request, \App\Post $post)
     {
-        $post = Post::with('comments', 'targets', 'user')->find($post->id);
+        $post = Post::with('comments', 'targets', 'user', 'topics')->find($post->id);
         if($request['type'] == 'ajax'){
             return compact('post');
         }
