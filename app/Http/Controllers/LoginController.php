@@ -42,7 +42,7 @@ class LoginController extends Controller
             return compact($user);
         }
         else {
-            $user = request(['nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
+            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
             \App\User::create($user);
             return compact(\Auth::attempt($user));
         }
