@@ -120,7 +120,6 @@ class PostController extends Controller
 //        );
 //        \App\Comment::create($params);
         $post->commentable()->save($comment);
-        return back();
     }
 
     /*

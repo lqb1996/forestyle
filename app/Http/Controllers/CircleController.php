@@ -32,9 +32,9 @@ class CircleController extends Controller
             'title' => 'required|max:255|min:4',
             'content' => 'required|min:100',
         ]);
-        $params = array_merge(request(['content', '']), ['user_id' => \Auth::id()]);
+        $params = array_merge(request(['content', '']), ['user_id' => \Auth::id()],request(['circle_imgs']));
         Circle::create($params);
-        return redirect('/circles');
+        return compact('params');
     }
 
     public function edit(Circle $circle)
@@ -64,7 +64,7 @@ class CircleController extends Controller
     /*
      * 文章评论保存
      */
-    public function comment()
+    public function comment(Circle $circle)
     {
         $this->validate(request(),[
             'circle_id' => 'required|exists:circles,id',
@@ -73,12 +73,26 @@ class CircleController extends Controller
 
         $user_id = \Auth::id();
 
-        $params = array_merge(
-            request(['circle_id', 'content']),
-            compact('user_id')
-        );
-        \App\Comment::create($params);
-        return back();
+        $this->validate(request(),[
+            'post_id' => 'required|exists:posts,id',
+            'content' => 'required|min:10',
+        ]);
+
+        $user_id = \Auth::id();
+        $commentable_id = request('circle_id');
+        $comment = new Comment();
+        $comment->user_id = $user_id;
+        $comment->content = request('content');
+        $circle->id = request('circle_id');
+
+//        $params = array_merge(
+//            compact('commentable_id'),
+//            request(['content']),
+//            compact('user_id'),
+//            compact('parent_id')
+//        );
+//        \App\Comment::create($params);
+        $circle->commentable()->save($comment);
     }
 
     /*
