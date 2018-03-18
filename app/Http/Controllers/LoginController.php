@@ -49,12 +49,14 @@ class LoginController extends Controller
         $password = '123456789';
 
         if (true == \Auth::attempt(array('email' => $email,'password' => $password))) {
-            return compact('email');
+            $flag = true;
+            return compact('email', 'flag');
         }
         else {
 //            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
             \App\User::create(compact('password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country'));
-            return compact(\Auth::attempt(array('email' => $email,'password' => $password)));
+            $flag = \Auth::attempt(array('email' => $email,'password' => $password));
+            return compact('email', 'flag');
         }
 
     }
