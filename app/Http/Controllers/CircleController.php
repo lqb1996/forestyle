@@ -93,6 +93,7 @@ class CircleController extends Controller
 //        );
 //        \App\Comment::create($params);
         $circle->commentable()->save($comment);
+        return compact('circle');
     }
 
     /*
