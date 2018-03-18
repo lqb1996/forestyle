@@ -37,14 +37,24 @@ class LoginController extends Controller
 //        $this->validate($request, [
 //            'openId' => ''
 //        ]);
-        $user = request(['openId']);
-        if (true == \Auth::attempt($user)) {
-            return compact($user);
+        $email = request('openId');
+        $nickName = request('nickName');
+        $openId = request('openId');
+        $avatarUrl = request('avatarUrl');
+        $gender = request('gender');
+        $language = request('language');
+        $city = request('city');
+        $province = request('province');
+        $country = request('country');
+        $password = '123456789';
+
+        if (true == \Auth::attempt(array('email' => $email,'password' => $password))) {
+            return compact('email');
         }
         else {
-            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
-            \App\User::create($user);
-            return compact(\Auth::attempt($user));
+//            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
+            \App\User::create(compact('password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country'));
+            return compact(\Auth::attempt(array('email' => $email,'password' => $password)));
         }
 
     }
