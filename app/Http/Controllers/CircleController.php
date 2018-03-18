@@ -22,7 +22,7 @@ class CircleController extends Controller
 
     public function imageUpload(Request $request)
     {
-        $path = $request->file('wangEditorH5File')->storePublicly(md5(\Auth::id() . time()));
+        $path = $request->file('file')->storePublicly(md5(\Auth::id() . time()));
         return asset(env('APP_URL').'/storage/'. $path);
     }
 
