@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Circle;
 use App\Topic;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CircleController extends Controller

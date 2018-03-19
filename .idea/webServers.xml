@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="92143af4-a6e4-488e-9ffe-194921a8710c" name="tencent" url="http://115.159.196.225">
+        <fileTransfer host="115.159.196.225" port="22" rootFolder="/home/ubuntu/wwwroot/forestyle" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -19,7 +19,7 @@ class PostController extends Controller
         $user = \Auth::user();
         $banners = Topic::with('posts')->find(1);
         $recommends = Topic::with('children')->find(2);
-        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['user'])->paginate(6);
+        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['topics'])->paginate(6);
         if($request['type'] == 'ajax'){
             return compact('posts','banners','recommends');
         }
