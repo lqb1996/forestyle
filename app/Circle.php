@@ -15,18 +15,18 @@ class Circle extends Model
     /*
      * 搜索的type
      */
-    public function searchableAs()
-    {
-        return 'circles_index';
-    }
-
-    public function toSearchableArray()
-    {
-        return [
-            'title' => $this->user(),
-            'content' => $this->content,
-        ];
-    }
+//    public function searchableAs()
+//    {
+//        return 'circles_index';
+//    }
+//
+//    public function toSearchableArray()
+//    {
+//        return [
+//            'title' => $this->user(),
+//            'content' => $this->content,
+//        ];
+//    }
 
     public function circleImgs()
     {

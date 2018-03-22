@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Circle;
+use App\CircleImg;
 use App\Topic;
 use App\Comment;
+use App\Relationship;
 use Illuminate\Http\Request;
 
 class CircleController extends Controller
@@ -29,13 +31,21 @@ class CircleController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:255|min:4',
-            'content' => 'required|min:100',
-        ]);
-        $params = array_merge(request(['content', '']), ['user_id' => \Auth::id()],request(['circle_imgs']));
-        Circle::create($params);
-        return compact('params');
+//        $this->validate($request, [
+//            'content' => 'required|min:10',
+//        ]);
+//        $params = array_merge(request(['content']), ['user_id' => \Auth::id()]);
+        $circle = new Circle();
+        $circle->content = request('content');
+        $circle->user_id = \Auth::id();
+//        $circle->save();
+//        if( !empty( request('circle_imgs'))){
+//            foreach (request('circle_imgs') as $circle_img) {
+//                $ci = new CircleImg(compact('circle_img'));
+//                $circle->circleImgs()->save($ci);
+//            }
+//        }
+        return compact('circle');
     }
 
     public function edit(Circle $circle)
@@ -67,19 +77,17 @@ class CircleController extends Controller
      */
     public function comment(Request $request)
     {
-//        $this->validate(request(),[
-//            'circle_id' => 'required|exists:circles,id',
-//            'content' => 'required|min:10',
-//        ]);
+        $this->validate(request(),[
+            'circle_id' => 'required|exists:circles,id',
+            'content' => 'required|min:10',
+        ]);
 
         $user_id = \Auth::id();
-        $commentable_id = request('circle_id');
         $comment = new Comment();
         $comment->user_id = $user_id;
         $comment->content = request('content');
         $circle = new circle();
         $circle->id = request('circle_id');
-
 //        $params = array_merge(
 //            compact('commentable_id'),
 //            request(['content']),
@@ -96,9 +104,9 @@ class CircleController extends Controller
      */
     public function zan(Circle $circle)
     {
-        $relationship = new Relationship();
         //commentable_type取值例如：App\Post，App\Page等等
 //        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
+        $relationship = new Relationship();
         $relationship->user_id = \Auth::id();
 
         $circle->targets()->save($relationship);

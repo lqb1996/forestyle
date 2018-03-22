@@ -98,7 +98,7 @@ class PostController extends Controller
     /*
      * 文章评论保存
      */
-    public function comment(Post $post)
+    public function comment(Request $request)
     {
         $this->validate(request(),[
             'post_id' => 'required|exists:posts,id',
@@ -106,12 +106,11 @@ class PostController extends Controller
         ]);
 
         $user_id = \Auth::id();
-        $commentable_id = request('post_id');
+        $post = new Post();
         $comment = new Comment();
         $comment->user_id = $user_id;
         $comment->content = request('content');
         $post->id = request('post_id');
-
 //        $params = array_merge(
 //            compact('commentable_id'),
 //            request(['content']),
@@ -120,6 +119,7 @@ class PostController extends Controller
 //        );
 //        \App\Comment::create($params);
         $post->commentable()->save($comment);
+        return compact('post');
     }
 
     /*
@@ -137,7 +137,6 @@ class PostController extends Controller
         //commentable_type取值例如：App\Post，App\Page等等
 //        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
         $relationship->user_id = \Auth::id();
-
         $post->targets()->save($relationship);
         return back();
     }
@@ -147,7 +146,6 @@ class PostController extends Controller
      */
     public function unzan(Post $post)
     {
-//        $post->zan(\Auth::id())->delete();
         $post->target(\Auth::id())->delete();
         return back();
     }

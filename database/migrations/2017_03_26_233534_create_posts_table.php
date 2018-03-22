@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title', 100);
             $table->string('imgUrl');
             $table->text('content');
+            $table->text('description')->default('');
             $table->integer('user_id');
             $table->timestamps();
             $table->tinyInteger('status')->default(0);  //文章状态 0 未知／1 通过／ -1 删除
