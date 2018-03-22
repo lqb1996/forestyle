@@ -4,7 +4,7 @@ namespace App;
 
 use \App\Model;
 
-class CircleImg extends Authenticatable
+class CircleImg extends Model
 {
     protected $table = "circleImgs";
 
