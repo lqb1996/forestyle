@@ -3,7 +3,7 @@
 namespace App;
 
 use \App\Model;
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Builder;
 
 class Circle extends Model
