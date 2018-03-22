@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Circle extends Model
 {
-    use Searchable;
+//    use Searchable;
 
     protected $table = "circles";
 
