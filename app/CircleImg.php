@@ -2,13 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use \App\Model;
 
 class CircleImg extends Authenticatable
 {
-    use Notifiable;
-
     protected $table = "circleImgs";
 
     public function circle()
