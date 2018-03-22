@@ -38,7 +38,7 @@ class CircleController extends Controller
         $circle = new Circle();
         $circle->content = request('content');
         $circle->user_id = \Auth::id();
-//        $circle->save();
+        $circle->save();
 //        if( !empty( request('circle_imgs'))){
 //            foreach (request('circle_imgs') as $circle_img) {
 //                $ci = new CircleImg(compact('circle_img'));
