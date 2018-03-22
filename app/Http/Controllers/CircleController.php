@@ -39,12 +39,12 @@ class CircleController extends Controller
         $circle->content = request('content');
         $circle->user_id = \Auth::id();
         $circle->save();
-//        if( !empty( request('circle_imgs'))){
-//            foreach (request('circle_imgs') as $circle_img) {
-//                $ci = new CircleImg(compact('circle_img'));
-//                $circle->circleImgs()->save($ci);
-//            }
-//        }
+        if( !empty( request('circle_imgs'))){
+            foreach (request('circle_imgs') as $circle_img) {
+                $ci = new CircleImg(compact('circle_img'));
+                $circle->circleImgs()->save($ci);
+            }
+        }
         return compact('circle');
     }
 
