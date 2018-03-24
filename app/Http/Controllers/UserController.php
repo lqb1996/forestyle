@@ -14,10 +14,10 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         // 这个人的文章
-        $posts = $user->posts()->orderBy('created_at', 'desc')->take(10)->get();
+        $posts = $user->posts()->withCount('targets', 'comments')->orderBy('created_at', 'desc')->take(10)->get();
         // 这个人的关注／粉丝／文章
         $user = \App\User::withCount(['stars', 'fans', 'posts'])->find($user->id);
-        $circles = $user->circles()->with( 'circleImgs')->orderBy('created_at', 'desc')->take(20)->get();
+        $circles = $user->circles()->with( 'circleImgs')->withCount('targets', 'comments')->orderBy('created_at', 'desc')->take(20)->get();
         $fans = $user->fans($user->id)->get();
         $stars = $user->stars()->get();
 
