@@ -55,16 +55,13 @@ class CircleController extends Controller
 
     public function show(Request $request, \App\Circle $circle)
     {
-        $circle = Circle::with('user', 'comments', 'circleImgs', 'targets')->find($circle->id);
-        return compact('circle');
+        $circle = Circle::with('user', 'comments.user', 'circleImgs', 'targets')->find($circle->id);
+        $hasZan = \Auth::user()->hasZan($circle->id, 'App\Circle');
+        return compact('circle', 'hasZan');
     }
 
     public function update(Request $request, Circle $circle)
     {
-        $this->validate($request, [
-            'title' => 'required|max:255|min:4',
-            'content' => 'required|min:100',
-        ]);
 
         $this->authorize('update', $circle);
 
@@ -78,8 +75,7 @@ class CircleController extends Controller
     public function comment(Request $request)
     {
         $this->validate(request(),[
-            'circle_id' => 'required|exists:circles,id',
-            'content' => 'required|min:10',
+            'circle_id' => 'required|exists:circles,id'
         ]);
 
         $user_id = \Auth::id();

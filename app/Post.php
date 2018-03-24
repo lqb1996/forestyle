@@ -3,30 +3,30 @@
 namespace App;
 
 use \App\Model;
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
-    use Searchable;
+//    use Searchable;
 
     protected $table = "posts";
 
     /*
      * 搜索的type
      */
-    public function searchableAs()
-    {
-        return 'posts_index';
-    }
-
-    public function toSearchableArray()
-    {
-        return [
-            'title' => $this->title,
-            'content' => $this->content,
-        ];
-    }
+//    public function searchableAs()
+//    {
+//        return 'posts_index';
+//    }
+//
+//    public function toSearchableArray()
+//    {
+//        return [
+//            'title' => $this->title,
+//            'content' => $this->content,
+//        ];
+//    }
 
 
     /*

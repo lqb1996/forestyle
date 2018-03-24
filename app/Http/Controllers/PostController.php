@@ -33,7 +33,7 @@ class PostController extends Controller
     {
         $user = \Auth::user();
 //        $banners = Topic::find(1)->with('posts')->get();
-        $topics = Topic::with('posts')->where('parent_id', 8)->orderBy('created_at', 'desc')->get();
+        $topics = Topic::with('posts.topics')->where('parent_id', 8)->orderBy('created_at', 'desc')->get();
         return compact('topics');
     }
     /*
@@ -75,11 +75,12 @@ class PostController extends Controller
 
     public function show(Request $request, \App\Post $post)
     {
-        $post = Post::with('comments', 'targets', 'user', 'topics')->find($post->id);
+        $post = Post::with('comments.user', 'targets', 'user', 'topics')->find($post->id);
+        $hasZan = \Auth::user()->hasZan($post->id, 'App\Post');
         if($request['type'] == 'ajax'){
-            return compact('post');
+            return compact('post', 'hasZan');
         }
-        return view('post/show', compact('post'));
+        return view('post/show', compact('post', 'isZan'));
     }
 
     public function update(Request $request, Post $post)
@@ -102,7 +103,7 @@ class PostController extends Controller
     {
         $this->validate(request(),[
             'post_id' => 'required|exists:posts,id',
-            'content' => 'required|min:10',
+//            'content' => 'required|min:10',
         ]);
 
         $user_id = \Auth::id();

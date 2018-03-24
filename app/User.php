@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $this->fans()->where('user_id', $uid)->count();
     }
+    public function hasZan($target_id,$target_type)
+    {
+        return $this->relationships()->where(['target_id' => $target_id,'target_type' => $target_type])->count();
+    }
 
     /*
      * 我粉的人
@@ -61,7 +65,7 @@ class User extends Authenticatable
     public function stars()
     {
 //        return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
-        return $this->hasMany(\App\Relationship::class, 'user_id', 'id')->where('target_type', 'App\User');
+        return $this->relationships()->where('target_type', 'App\User');
     }
 
 //返回该用户的所有关系
