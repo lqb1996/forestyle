@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
     public function hasZan($target_id,$target_type)
     {
-        return $this->relationships()->where(['target_id' => $target_id,'target_type' => $target_type])->count();
+        return $this->relationships()->count();
     }
 
     /*
