@@ -48,9 +48,9 @@ Route::get('/', "\App\Http\Controllers\LoginController@index");
     //圈子
     Route::get('/circles', '\App\Http\Controllers\CircleController@index');
     Route::get('/circles/create', '\App\Http\Controllers\CircleController@create');
-    Route::post('/circles', '\App\Http\Controllers\CircleController@store');
-    Route::post('/circles/circleList', '\App\Http\Controllers\CircleController@circleList');
+    Route::get('/circles/circleList', '\App\Http\Controllers\CircleController@circleList');
 //    Route::get('/circles/search', '\App\Http\Controllers\PostController@search');
+    Route::post('/circles', '\App\Http\Controllers\CircleController@store');
     Route::get('/circles/{circle}', '\App\Http\Controllers\CircleController@show');
     Route::get('/circles/{circle}/edit', '\App\Http\Controllers\CircleController@edit');
     Route::put('/circles/{circle}', '\App\Http\Controllers\CircleController@update');
