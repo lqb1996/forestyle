@@ -138,8 +138,8 @@ class PostController extends Controller
         //commentable_type取值例如：App\Post，App\Page等等
 //        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
         $relationship->user_id = \Auth::id();
-        $post->targets()->save($relationship);
-        return back();
+        $post->targets()->firstOrCreate($relationship);
+        return compact('post');
     }
 
     /*
@@ -148,7 +148,7 @@ class PostController extends Controller
     public function unzan(Post $post)
     {
         $post->target(\Auth::id())->delete();
-        return back();
+        return compact('post');
     }
 
     /*

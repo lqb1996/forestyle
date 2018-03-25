@@ -105,8 +105,8 @@ class CircleController extends Controller
         $relationship = new Relationship();
         $relationship->user_id = \Auth::id();
 
-        $circle->targets()->save($relationship);
-        return back();
+        $circle->targets()->firstOrCreate($relationship);
+        return compact('circle');
     }
 
     /*
@@ -115,7 +115,7 @@ class CircleController extends Controller
     public function unzan(Circle $circle)
     {
         $circle->target(\Auth::id())->delete();
-        return back();
+        return compact('circle');
     }
 
     /*
