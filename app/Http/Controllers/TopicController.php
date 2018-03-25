@@ -23,7 +23,7 @@ class TopicController extends Controller
     //topic详情接口
     public function index(Topic $topic)
     {
-        $posts = $topic->posts()->orderBy('created_at', 'desc')->with(['user'])->take(10)->get();
+        $posts = $topic->posts()->orderBy('created_at', 'desc')->with(['user', 'topics'])->take(10)->get();
         return compact('topic', 'posts');
     }
 
