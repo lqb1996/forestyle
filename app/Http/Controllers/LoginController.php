@@ -57,7 +57,8 @@ class LoginController extends Controller
 //            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
             \App\User::firstOrCreate(compact('password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country'));
             $flag = \Auth::attempt(array('email' => $email,'password' => $psd));
-            return compact('email', 'flag');
+            $user = \Auth::user();
+            return compact('user', 'flag');
         }
 
     }
