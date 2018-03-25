@@ -23,6 +23,12 @@ class CircleController extends Controller
         return compact('banners', 'hotTopic', 'circles');
     }
 
+    public function circle(Request $request)
+    {
+        $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('user', 'circleImgs')->withCount(["targets", "comments"])->paginate(20);
+        return compact('circles');
+    }
+
     public function imageUpload(Request $request)
     {
         $path = $request->file('file')->storePublicly(md5(\Auth::id() . time()));
