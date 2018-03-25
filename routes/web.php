@@ -49,7 +49,7 @@ Route::get('/', "\App\Http\Controllers\LoginController@index");
     Route::get('/circles', '\App\Http\Controllers\CircleController@index');
     Route::get('/circles/create', '\App\Http\Controllers\CircleController@create');
     Route::post('/circles', '\App\Http\Controllers\CircleController@store');
-    Route::post('/circles/circle', '\App\Http\Controllers\CircleController@circle');
+    Route::post('/circles/circle', '\App\Http\Controllers\CircleController@circleIndex');
 //    Route::get('/circles/search', '\App\Http\Controllers\PostController@search');
     Route::get('/circles/{circle}', '\App\Http\Controllers\CircleController@show');
     Route::get('/circles/{circle}/edit', '\App\Http\Controllers\CircleController@edit');
