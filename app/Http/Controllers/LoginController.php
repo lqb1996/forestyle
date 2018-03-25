@@ -51,7 +51,8 @@ class LoginController extends Controller
 
         if (true == \Auth::attempt(array('email' => $email,'password' => $psd))) {
             $flag = true;
-            return compact('email', 'flag');
+            $user = \Auth::user();
+            return compact('user', 'flag');
         }
         else {
 //            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
