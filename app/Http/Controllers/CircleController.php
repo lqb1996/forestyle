@@ -23,7 +23,7 @@ class CircleController extends Controller
         return compact('banners', 'hotTopic', 'circles');
     }
 
-    public function circleIndex(Request $request)
+    public function circleIList(Request $request)
     {
         $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('user', 'circleImgs')->withCount(["targets", "comments"])->paginate(20);
         return compact('circles');
