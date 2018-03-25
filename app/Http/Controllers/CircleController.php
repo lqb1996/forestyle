@@ -26,7 +26,7 @@ class CircleController extends Controller
     public function imageUpload(Request $request)
     {
         $path = $request->file('file')->storePublicly(md5(\Auth::id() . time()));
-        return asset(env('APP_URL').'/storage/'. $path);
+        return asset('/storage/'. $path);
     }
 
     public function store(Request $request)
