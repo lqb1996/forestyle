@@ -105,7 +105,7 @@ class CircleController extends Controller
         $relationship = new Relationship();
         $relationship->user_id = \Auth::id();
 
-        $circle->targets()->firstOrCreate($relationship);
+        $circle->targets()->save($relationship);
         return compact('circle');
     }
 
