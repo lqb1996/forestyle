@@ -58,16 +58,23 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
+
     {
         $this->validate($request, [
             'title' => 'required|max:255|min:4',
+            'description' => 'required|max:100',
             'content' => 'required|min:100',
         ]);
-        $params = array_merge(request(['title', 'content']), ['user_id' => \Auth::id()]);
+        $params = array_merge(request(['title', 'description', 'content']), ['user_id' => \Auth::id()]);
+
+        if ($request->file('imgUrl')) {
+            $path = $request->file('imgUrl')->storePublicly(md5(\Auth::id() . time()));
+            $imgUrl = env('APP_URL')."/storage/". $path;
+            $params = array_merge($params, ['imgUrl' => $imgUrl]);
+        }
         Post::create($params);
         return redirect('/posts');
     }
-
     public function edit(Post $post)
     {
         return view('post/edit', compact('post'));
@@ -87,12 +94,17 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:255|min:4',
+            'description' => 'required|max:100',
             'content' => 'required|min:100',
         ]);
 
         $this->authorize('update', $post);
-
-        $post->update(request(['title', 'content']));
+        $post->update(request(['title', 'description', 'content']));
+        if ($request->file('imgUrl')) {
+            $path = $request->file('imgUrl')->storePublicly(md5(\Auth::id() . time()));
+            $imgUrl = env('APP_URL')."/storage/". $path;
+            $post->update(['imgUrl' => $imgUrl]);
+        }
         return redirect("/posts/{$post->id}");
     }
 
