@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">头像</label>
                 <div class="col-sm-2">
-                    <input class=" file-loading preview_input" type="file" value="{{$me->avatarUrl}}" style="width:72px" name="avatarUrl">
+                    <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="avatarUrl">
                     <img  class="preview_img" src="{{$me->avatarUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
                 </div>
             </div>
