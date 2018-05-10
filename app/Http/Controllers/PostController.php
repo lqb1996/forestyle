@@ -99,12 +99,13 @@ class PostController extends Controller
         ]);
 
         $this->authorize('update', $post);
-        $post->update(request(['title', 'description', 'content']));
+        $param = request(['title', 'description', 'content']);
         if ($request->file('imgUrl')) {
             $path = $request->file('imgUrl')->storePublicly(md5(\Auth::id() . time()));
             $imgUrl = env('APP_URL')."/storage/". $path;
-            $post->update(['imgUrl' => $imgUrl]);
+            $param = array_merge($param, ['imgUrl' => $imgUrl]);
         }
+        $post->update($param);
         return redirect("/posts/{$post->id}");
     }
 
