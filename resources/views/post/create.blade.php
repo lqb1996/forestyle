@@ -17,6 +17,7 @@
                 <label class="col-sm-2 control-label">封面图片</label>
                 <div class="col-sm-2">
                     <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="imgUrl">
+                    <img  class="preview_img" src="" alt="" class="img-rounded" style="border-radius:500px;">
                 </div>
             </div></br>
             <div class="form-group">
