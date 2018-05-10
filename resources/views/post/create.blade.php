@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="col-sm-8 blog-main">
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
                 <label>标题</label>
@@ -18,7 +18,7 @@
                 <div class="col-sm-2">
                     <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="imgUrl">
                 </div>
-            </div>
+            </div></br>
             <div class="form-group">
                 <label>内容</label>
                 <textarea id="content"  style="height:400px;max-height:500px;" name="content" class="form-control" placeholder="这里是内容"></textarea>
