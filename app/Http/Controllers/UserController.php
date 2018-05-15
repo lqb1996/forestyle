@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace forestyle\Http\Controllers;
 
-use App\Circle;
+use forestyle\Circle;
 use Illuminate\Http\Request;
-use App\User;
+use forestyle\User;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
         // 这个人的文章
         $posts = $user->posts()->withCount('targets', 'comments')->orderBy('created_at', 'desc')->take(10)->get();
         // 这个人的关注／粉丝／文章
-        $user = \App\User::withCount(['stars', 'fans', 'posts'])->find($user->id);
+        $user = \forestyle\User::withCount(['stars', 'fans', 'posts'])->find($user->id);
         $circles = $user->circles()->with( 'circleImgs')->withCount('targets', 'comments')->orderBy('created_at', 'desc')->take(20)->get();
         $fans = $user->fans($user->id)->get();
         $stars = $user->stars()->get();
@@ -30,8 +30,8 @@ class UserController extends Controller
     public function fan(User $user)
     {
         $me = \Auth::user();
-//        \App\Fan::firstOrCreate(['fan_id' => $me->id, 'star_id' => $user->id]);
-        \App\Relationship::firstOrCreate(['user_id' => $me->id, 'target_id' => $user->id, 'target_type' => 'App\User']);
+//        \forestyle\Fan::firstOrCreate(['fan_id' => $me->id, 'star_id' => $user->id]);
+        \forestyle\Relationship::firstOrCreate(['user_id' => $me->id, 'target_id' => $user->id, 'target_type' => 'forestyle\User']);
         return [
             'error' => 0,
             'msg' => ''
@@ -41,8 +41,8 @@ class UserController extends Controller
     public function unfan(User $user)
     {
         $me = \Auth::user();
-//        \App\Fan::where('fan_id', $me->id)->where('star_id', $user->id)->delete();
-        \App\Relationship::where('user_id',$me->id)->where('target_id', $user->id)->where('target_type', 'App\User')->delete();
+//        \forestyle\Fan::where('fan_id', $me->id)->where('star_id', $user->id)->delete();
+        \forestyle\Relationship::where('user_id',$me->id)->where('target_id', $user->id)->where('target_type', 'forestyle\User')->delete();
         return [
             'error' => 0,
             'msg' => ''
@@ -63,7 +63,7 @@ class UserController extends Controller
 
         $nickName = request('nickName');
         if ($nickName != $user->nickName) {
-            if(\App\User::where('nickName', $nickName)->count() > 0) {
+            if(\forestyle\User::where('nickName', $nickName)->count() > 0) {
                 return back()->withErrors(array('message' => '用户名称已经被注册'));
             }
             $user->nickName = request('nickName');

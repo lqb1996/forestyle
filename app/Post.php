@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace forestyle;
 
-use \App\Model;
+use \forestyle\Model;
 //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -34,12 +34,12 @@ class Post extends Model
      */
     public function comments()
     {
-        return $this->morphMany(\App\Comment::class,'commentable')->orderBy('created_at', 'desc');
+        return $this->morphMany(\forestyle\Comment::class,'commentable')->orderBy('created_at', 'desc');
     }
 
     public function commentable()
     {
-        return $this->morphMany(\App\Comment::class,'commentable')->orderBy('created_at', 'desc');
+        return $this->morphMany(\forestyle\Comment::class,'commentable')->orderBy('created_at', 'desc');
     }
 
     /*
@@ -47,7 +47,7 @@ class Post extends Model
      */
     public function user()
     {
-        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+        return $this->belongsTo(\forestyle\User::class, 'user_id', 'id');
     }
 
     /*
@@ -55,7 +55,7 @@ class Post extends Model
      */
 //    public function zans()
 //    {
-//        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
+//        return $this->hasMany(\forestyle\Zan::class)->orderBy('created_at', 'desc');
 //    }
 
     /*
@@ -63,7 +63,7 @@ class Post extends Model
      */
 //    public function zan($user_id)
 //    {
-//        return $this->hasOne(\App\Zan::class)->where('user_id', $user_id);
+//        return $this->hasOne(\forestyle\Zan::class)->where('user_id', $user_id);
 //    }
 
     /*
@@ -71,22 +71,22 @@ class Post extends Model
      */
     public function topics()
     {
-        return $this->belongsToMany(\App\Topic::class, 'post_topics', 'post_id', 'topic_id')->withPivot(['topic_id', 'post_id']);
+        return $this->belongsToMany(\forestyle\Topic::class, 'post_topics', 'post_id', 'topic_id')->withPivot(['topic_id', 'post_id']);
     }
 
     public function postTopics()
     {
-        return $this->hasMany(\App\PostTopic::class, 'post_id');
+        return $this->hasMany(\forestyle\PostTopic::class, 'post_id');
     }
 
     public function target($user_id)
     {
-        return $this->morphMany(\App\Relationship::class,'target')->where('user_id', $user_id);
+        return $this->morphMany(\forestyle\Relationship::class,'target')->where('user_id', $user_id);
     }
 
     public function targets()
     {
-        return $this->morphMany(\App\Relationship::class,'target');
+        return $this->morphMany(\forestyle\Relationship::class,'target');
     }
 
     public function scopeTopicNotBy(Builder $query, $topic_id)

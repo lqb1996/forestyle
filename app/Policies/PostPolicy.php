@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace forestyle\Policies;
 
-use App\User;
-use App\Post;
+use forestyle\User;
+use forestyle\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy

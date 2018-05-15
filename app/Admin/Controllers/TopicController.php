@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace forestyle\Admin\Controllers;
 
-use App\Topic;
+use forestyle\Topic;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -14,7 +14,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = \App\Topic::all();
+        $topics = \forestyle\Topic::all();
         return view('admin/topic/index', compact('topics'));
     }
 
@@ -40,14 +40,14 @@ class TopicController extends Controller
             'name' => 'required|min:3'
         ]);
 
-        \App\Topic::create(request(['name']));
+        \forestyle\Topic::create(request(['name']));
         return redirect('/admin/topics');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \forestyle\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function show(Topic $topic)
@@ -58,7 +58,7 @@ class TopicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \forestyle\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function edit(Topic $topic)
@@ -70,7 +70,7 @@ class TopicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
+     * @param  \forestyle\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Topic $topic)
@@ -81,7 +81,7 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Topic  $topic
+     * @param  \forestyle\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function destroy(Topic $topic)

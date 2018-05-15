@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace forestyle\Admin\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = \App\AdminUser::paginate(10);
+        $users = \forestyle\AdminUser::paginate(10);
         return view('/admin/user/index', compact('users'));
     }
 
@@ -35,16 +35,16 @@ class UserController extends Controller
 
         $name = request('name');
         $password = bcrypt(request('password'));
-        \App\AdminUser::create(compact('name', 'password'));
+        \forestyle\AdminUser::create(compact('name', 'password'));
         return redirect('/admin/users');
     }
 
     /*
      * 角色的权限
      */
-    public function role(\App\AdminUser $user)
+    public function role(\forestyle\AdminUser $user)
     {
-        $roles = \App\AdminRole::all();
+        $roles = \forestyle\AdminRole::all();
         $myRoles = $user->roles;
         return view('/admin/user/role', compact('roles', 'myRoles', 'user'));
     }
@@ -52,13 +52,13 @@ class UserController extends Controller
     /*
      * 保存权限
      */
-    public function storeRole(\App\AdminUser $user)
+    public function storeRole(\forestyle\AdminUser $user)
     {
         $this->validate(request(),[
             'roles' => 'required|array'
         ]);
 
-        $roles = \App\AdminRole::find(request('roles'));
+        $roles = \forestyle\AdminRole::find(request('roles'));
         $myRoles = $user->roles;
 
         // 对已经有的权限

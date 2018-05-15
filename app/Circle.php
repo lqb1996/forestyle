@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace forestyle;
 
-use \App\Model;
+use \forestyle\Model;
 //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -30,19 +30,19 @@ class Circle extends Model
 
     public function circleImgs()
     {
-        return $this->hasMany(\App\CircleImg::class, 'circle_id','id');
+        return $this->hasMany(\forestyle\CircleImg::class, 'circle_id','id');
     }
     /*
      * 所有评论
      */
     public function comments()
     {
-        return $this->morphMany(\App\Comment::class,'commentable')->orderBy('created_at', 'desc');
+        return $this->morphMany(\forestyle\Comment::class,'commentable')->orderBy('created_at', 'desc');
     }
 
     public function commentable()
     {
-        return $this->morphMany(\App\Comment::class,'commentable')->orderBy('created_at', 'desc');
+        return $this->morphMany(\forestyle\Comment::class,'commentable')->orderBy('created_at', 'desc');
     }
 
     /*
@@ -50,7 +50,7 @@ class Circle extends Model
      */
     public function user()
     {
-        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+        return $this->belongsTo(\forestyle\User::class, 'user_id', 'id');
     }
 
     /*
@@ -58,17 +58,17 @@ class Circle extends Model
      */
 //    public function zans()
 //    {
-//        return $this->hasMany(\App\Zan::class)->orderBy('created_at', 'desc');
+//        return $this->hasMany(\forestyle\Zan::class)->orderBy('created_at', 'desc');
 //    }
 
     public function target($user_id)
     {
-        return $this->morphMany(\App\Relationship::class,'target')->where('user_id', $user_id);
+        return $this->morphMany(\forestyle\Relationship::class,'target')->where('user_id', $user_id);
     }
 
     public function targets()
     {
-        return $this->morphMany(\App\Relationship::class,'target');
+        return $this->morphMany(\forestyle\Relationship::class,'target');
     }
 
 

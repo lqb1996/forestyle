@@ -29,6 +29,7 @@ Route::get('/', "\App\Http\Controllers\LoginController@index");
     Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
 
     // 个人主页
+    Route::get('/getOpenid', '\App\Http\Controllers\UserController@getOpenid');
     Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');
     Route::post('/user/{user}/fan', '\App\Http\Controllers\UserController@fan');
     Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');

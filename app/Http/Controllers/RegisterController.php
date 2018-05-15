@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace forestyle\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -22,7 +22,7 @@ class RegisterController extends Controller
         $password = bcrypt(request('password'));
         $nickName = request('nickName');
         $email = request('email');
-        $user = \App\User::create(compact('nickName', 'email', 'password'));
+        $user = \forestyle\User::create(compact('nickName', 'email', 'password'));
         return redirect('/login');
     }
 }

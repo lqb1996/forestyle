@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace forestyle;
 
-use \App\Model;
+use \forestyle\Model;
 
 class Comment extends Model
 {
@@ -27,6 +27,6 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo('\App\User', 'user_id', 'id');
+        return $this->belongsTo('\forestyle\User', 'user_id', 'id');
     }
 }

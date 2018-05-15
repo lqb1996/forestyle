@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace forestyle\Admin\Controllers;
 
 use Illuminate\Http\Request;
 

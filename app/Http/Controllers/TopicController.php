@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace forestyle\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Topic;
+use forestyle\Topic;
 
 class TopicController extends Controller
 {
@@ -15,7 +15,7 @@ class TopicController extends Controller
         $posts = $topic->posts()->orderBy('created_at', 'desc')->with(['user'])->take(10)->get();
         $me = \Auth::user();
 
-        $myposts = \App\Post::authorBy(\Auth::id())->topicNotBy($topic->id)->get();
+        $myposts = \forestyle\Post::authorBy(\Auth::id())->topicNotBy($topic->id)->get();
 
         return view('topic/show', compact('topic', 'posts', 'myposts'));
     }
@@ -37,7 +37,7 @@ class TopicController extends Controller
         ]);
 
         // 确认这些post都是属于当前用户的
-        $posts = \App\Post::find(request(['post_ids']));
+        $posts = \forestyle\Post::find(request(['post_ids']));
         foreach ($posts as $post) {
             if ($post->user_id != \Auth::id()) {
                 return back()->withErrors(array('message' => '没有权限'));
@@ -48,7 +48,7 @@ class TopicController extends Controller
         $post_ids = request('post_ids');
         $topic_id = $topic->id;
         foreach ($post_ids as $post_id){
-            \App\PostTopic::firstOrCreate(compact('topic_id', 'post_id'));
+            \forestyle\PostTopic::firstOrCreate(compact('topic_id', 'post_id'));
         }
         return back();
     }

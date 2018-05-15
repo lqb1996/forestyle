@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace forestyle;
 
-use \App\Model;
+use \forestyle\Model;
 
 class Zan extends Model
 {
