@@ -55,6 +55,15 @@ class UserController extends Controller
         return view('user/setting', compact('me'));
     }
 
+
+    public function saveUserInfo(Request $request)
+    {
+        if(!$request['userInfo']) {
+            return false;
+        }
+        return true;
+    }
+
     public function settingStore(Request $request, User $user)
     {
         $this->validate(request(),[

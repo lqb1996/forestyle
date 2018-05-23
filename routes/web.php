@@ -66,6 +66,7 @@ Route::get('/', "\App\Http\Controllers\LoginController@index");
 
 Route::get('/login', "\App\Http\Controllers\LoginController@index")->name('login');
 Route::post('/login', "\App\Http\Controllers\LoginController@login");
+Route::post('/saveUserInfo', "\App\Http\Controllers\UserController@saveUserInfo");
 Route::post('/loginWeChat', "\App\Http\Controllers\LoginController@loginWeChat");
 Route::get('/logout', "\App\Http\Controllers\LoginController@logout");
 
