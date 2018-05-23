@@ -1,8 +1,8 @@
 <?php
 
-namespace forestyle\Admin\Controllers;
+namespace App\Admin\Controllers;
 
-use forestyle\Topic;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class NoticeController extends Controller
@@ -14,7 +14,7 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $notices = \forestyle\Notice::all();
+        $notices = \App\Notice::all();
         return view('admin/notice/index', compact('notices'));
     }
 
@@ -41,9 +41,9 @@ class NoticeController extends Controller
             'content' => 'required|min:3'
         ]);
 
-        $notice = \forestyle\Notice::create(request(['title', 'content']));
+        $notice = \App\Notice::create(request(['title', 'content']));
 
-        dispatch(new \forestyle\Jobs\SendMessage($notice));
+        dispatch(new \App\Jobs\SendMessage($notice));
 
         return redirect('/admin/notices');
     }
@@ -51,7 +51,7 @@ class NoticeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \forestyle\Topic  $topic
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -61,7 +61,7 @@ class NoticeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \forestyle\Topic  $topic
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -73,7 +73,7 @@ class NoticeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \forestyle\Topic  $topic
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Topic $topic)
@@ -84,7 +84,7 @@ class NoticeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \forestyle\Topic  $topic
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function destroy()

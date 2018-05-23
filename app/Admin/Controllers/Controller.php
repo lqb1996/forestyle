@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Admin\Controllers;
+namespace App\Admin\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

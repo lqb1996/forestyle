@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 class Topic extends Model
 {
@@ -12,7 +12,7 @@ class Topic extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(\forestyle\Post::class, 'post_topics', 'topic_id', 'post_id')->withPivot(['topic_id', 'post_id']);
+        return $this->belongsToMany(\App\Post::class, 'post_topics', 'topic_id', 'post_id')->withPivot(['topic_id', 'post_id']);
     }
 
     public function parent()

@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,12 +30,12 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(\forestyle\Post::class, 'user_id', 'id');
+        return $this->hasMany(\App\Post::class, 'user_id', 'id');
     }
 
     public function circles()
     {
-        return $this->hasMany(\forestyle\Circle::class, 'user_id', 'id');
+        return $this->hasMany(\App\Circle::class, 'user_id', 'id');
     }
 
     /*
@@ -43,8 +43,8 @@ class User extends Authenticatable
      */
     public function fans()
     {
-//        return $this->hasMany(\forestyle\Fan::class, 'star_id', 'id');
-        return $this->morphMany(\forestyle\Relationship::class,'target')->where('target_type', 'forestyle\User');
+//        return $this->hasMany(\App\Fan::class, 'star_id', 'id');
+        return $this->morphMany(\App\Relationship::class,'target')->where('target_type', 'App\User');
     }
 
     /*
@@ -64,14 +64,14 @@ class User extends Authenticatable
      */
     public function stars()
     {
-//        return $this->hasMany(\forestyle\Fan::class, 'fan_id', 'id');
-        return $this->relationships()->where('target_type', 'forestyle\User');
+//        return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
+        return $this->relationships()->where('target_type', 'App\User');
     }
 
 //返回该用户的所有关系
     public function relationships()
     {
-        return $this->hasMany(\forestyle\Relationship::class,'user_id','id');
+        return $this->hasMany(\App\Relationship::class,'user_id','id');
     }
 
     /*
@@ -79,7 +79,7 @@ class User extends Authenticatable
      */
     public function notices()
     {
-        return $this->belongsToMany(\forestyle\Notice::class, 'user_notice', 'user_id', 'notice_id')->withPivot(['user_id', 'notice_id']);
+        return $this->belongsToMany(\App\Notice::class, 'user_notice', 'user_id', 'notice_id')->withPivot(['user_id', 'notice_id']);
     }
 
     /*

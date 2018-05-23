@@ -72,7 +72,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => forestyle\User::class,
+            'model' => App\User::class,
         ],
 
         'admins' => [

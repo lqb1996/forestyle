@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Admin\Controllers;
+namespace App\Admin\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = \forestyle\AdminPermission::paginate(10);
+        $permissions = \App\AdminPermission::paginate(10);
         return view('/admin/permission/index', compact('permissions'));
     }
 
@@ -33,7 +33,7 @@ class PermissionController extends Controller
             'description' => 'required'
         ]);
 
-        \forestyle\AdminPermission::create(request(['name', 'description']));
+        \App\AdminPermission::create(request(['name', 'description']));
         return redirect('/admin/permissions');
     }
 }

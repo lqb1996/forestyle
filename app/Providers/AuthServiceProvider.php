@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        //'forestyle\Model' => 'forestyle\Policies\ModelPolicy',
-        'forestyle\Post' => 'forestyle\Policies\PostPolicy',
+        //'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Post' => 'App\Policies\PostPolicy',
     ];
 
     /**
@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-//        $permissions = \forestyle\AdminPermission::with('roles')->get();
+//        $permissions = \App\AdminPermission::with('roles')->get();
 //        foreach ($permissions as $permission) {
 //            Gate::define($permission->name, function($user) use($permission) {
 //                return $user->hasPermission($permission);

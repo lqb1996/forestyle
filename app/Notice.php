@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 
 class Notice extends Model

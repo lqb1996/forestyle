@@ -1,12 +1,12 @@
 <?php
 
-namespace forestyle\Http\Controllers;
+namespace App\Http\Controllers;
 
-use forestyle\Comment;
-use forestyle\Relationship;
+use App\Comment;
+use App\Relationship;
 use Illuminate\Http\Request;
-use forestyle\Post;
-use forestyle\Topic;
+use App\Post;
+use App\Topic;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -80,10 +80,10 @@ class PostController extends Controller
         return view('post/edit', compact('post'));
     }
 
-    public function show(Request $request, \forestyle\Post $post)
+    public function show(Request $request, \App\Post $post)
     {
         $post = Post::with('comments.user', 'targets', 'user', 'topics')->find($post->id);
-        $hasZan = \Auth::user()->hasZan($post->id, 'forestyle\Post');
+        $hasZan = \Auth::user()->hasZan($post->id, 'App\Post');
         if($request['type'] == 'ajax'){
             return compact('post', 'hasZan');
         }
@@ -131,7 +131,7 @@ class PostController extends Controller
 //            compact('user_id'),
 //            compact('parent_id')
 //        );
-//        \forestyle\Comment::create($params);
+//        \App\Comment::create($params);
         $post->commentable()->save($comment);
         return compact('post');
     }
@@ -141,15 +141,15 @@ class PostController extends Controller
      */
     public function zan(Post $post)
     {
-//        $zan = new \forestyle\Zan;
+//        $zan = new \App\Zan;
 //        $zan->user_id = \Auth::id();
 //        $post->zans()->save($zan);
 //        $post->target()->save($zan);
 
 
         $relationship = new Relationship();
-        //commentable_type取值例如：forestyle\Post，forestyle\Page等等
-//        $target = app('forestyle\Post')->where('id', $post->id)->firstOrFail();
+        //commentable_type取值例如：App\Post，App\Page等等
+//        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
         $relationship->user_id = \Auth::id();
         $post->targets()->save($relationship);
         return compact('post');

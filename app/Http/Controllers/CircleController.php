@@ -1,12 +1,12 @@
 <?php
 
-namespace forestyle\Http\Controllers;
+namespace App\Http\Controllers;
 
-use forestyle\Circle;
-use forestyle\CircleImg;
-use forestyle\Topic;
-use forestyle\Comment;
-use forestyle\Relationship;
+use App\Circle;
+use App\CircleImg;
+use App\Topic;
+use App\Comment;
+use App\Relationship;
 use Illuminate\Http\Request;
 
 class CircleController extends Controller
@@ -59,10 +59,10 @@ class CircleController extends Controller
         return view('circle/edit', compact('circle'));
     }
 
-    public function show(Request $request, \forestyle\Circle $circle)
+    public function show(Request $request, \App\Circle $circle)
     {
         $circle = Circle::with('user', 'comments.user', 'circleImgs', 'targets')->find($circle->id);
-        $hasZan = \Auth::user()->hasZan($circle->id, 'forestyle\Circle');
+        $hasZan = \Auth::user()->hasZan($circle->id, 'App\Circle');
         return compact('circle', 'hasZan');
     }
 
@@ -96,7 +96,7 @@ class CircleController extends Controller
 //            compact('user_id'),
 //            compact('parent_id')
 //        );
-//        \forestyle\Comment::create($params);
+//        \App\Comment::create($params);
         $circle->commentable()->save($comment);
         return compact('circle');
     }
@@ -106,8 +106,8 @@ class CircleController extends Controller
      */
     public function zan(Circle $circle)
     {
-        //commentable_type取值例如：forestyle\Post，forestyle\Page等等
-//        $target = app('forestyle\Post')->where('id', $post->id)->firstOrFail();
+        //commentable_type取值例如：App\Post，App\Page等等
+//        $target = app('App\Post')->where('id', $post->id)->firstOrFail();
         $relationship = new Relationship();
         $relationship->user_id = \Auth::id();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -86,7 +86,7 @@ class LoginController extends Controller
 //        }
 //        else {
 //            $user = request(['password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country']);
-//            \forestyle\User::firstOrCreate(compact('password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country'));
+//            \App\User::firstOrCreate(compact('password', 'nickName', 'openId', 'avatarUrl', 'gender', 'language', 'email', 'city', 'province', 'country'));
 //            $flag = \Auth::attempt(array('email' => $email,'password' => $psd));
 //            $user = \Auth::user();
 //            return compact('user', 'flag');

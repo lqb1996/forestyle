@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 
 class Relationship extends Model
@@ -9,7 +9,7 @@ class Relationship extends Model
 
     public function user()
     {
-        return $this->belongsTo(\forestyle\User::class, 'user_id', 'id');
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 
     public function target()

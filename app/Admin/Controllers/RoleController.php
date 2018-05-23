@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Admin\Controllers;
+namespace App\Admin\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = \forestyle\AdminRole::paginate(10);
+        $roles = \App\AdminRole::paginate(10);
         return view('/admin/role/index', compact('roles'));
     }
 
@@ -33,16 +33,16 @@ class RoleController extends Controller
             'description' => 'required',
         ]);
 
-        \forestyle\AdminRole::create(request(['name', 'description']));
+        \App\AdminRole::create(request(['name', 'description']));
         return redirect('/admin/roles');
     }
 
     /*
      * 角色的权限
      */
-    public function permission(\forestyle\AdminRole $role)
+    public function permission(\App\AdminRole $role)
     {
-        $permissions = \forestyle\AdminPermission::all();
+        $permissions = \App\AdminPermission::all();
         $myPermissions = $role->permissions;
         return view('/admin/role/permission', compact('permissions', 'myPermissions', 'role'));
     }
@@ -50,13 +50,13 @@ class RoleController extends Controller
     /*
      * 保存权限
      */
-    public function storePermission(\forestyle\AdminRole $role)
+    public function storePermission(\App\AdminRole $role)
     {
         $this->validate(request(),[
            'permissions' => 'required|array'
         ]);
 
-        $permissions = \forestyle\AdminPermission::find(request('permissions'));
+        $permissions = \App\AdminPermission::find(request('permissions'));
         $myPermissions = $role->permissions;
 
         // 对已经有的权限

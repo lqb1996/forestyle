@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        forestyle\Providers\AppServiceProvider::class,
-        forestyle\Providers\AuthServiceProvider::class,
-        // forestyle\Providers\BroadcastServiceProvider::class,
-        forestyle\Providers\EventServiceProvider::class,
-        forestyle\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
 //        Laravel\Scout\ScoutServiceProvider::class,
 //        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,

@@ -1,8 +1,8 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
-use \forestyle\Model;
+use \App\Model;
 
 class CircleImg extends Model
 {
@@ -10,7 +10,7 @@ class CircleImg extends Model
 
     public function circle()
     {
-        return $this->belongsTo(\forestyle\Circle::class, 'circle_id','id');
+        return $this->belongsTo(\App\Circle::class, 'circle_id','id');
     }
 
 }

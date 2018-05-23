@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 
 class AdminRole extends Model
@@ -12,7 +12,7 @@ class AdminRole extends Model
      */
     public function permissions()
     {
-        return $this->belongsToMany(\forestyle\AdminPermission::class, 'admin_permission_role', 'role_id', 'permission_id')->withPivot(['permission_id', 'role_id']);
+        return $this->belongsToMany(\App\AdminPermission::class, 'admin_permission_role', 'role_id', 'permission_id')->withPivot(['permission_id', 'role_id']);
     }
 
     /*

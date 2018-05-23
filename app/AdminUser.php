@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,7 +32,7 @@ class AdminUser extends Authenticatable
      */
     public function roles()
     {
-        return $this->belongsToMany(\forestyle\AdminRole::class, 'admin_role_user', 'user_id', 'role_id')->withPivot(['user_id', 'role_id']);
+        return $this->belongsToMany(\App\AdminRole::class, 'admin_role_user', 'user_id', 'role_id')->withPivot(['user_id', 'role_id']);
     }
 
     /*
@@ -56,7 +56,7 @@ class AdminUser extends Authenticatable
      */
     public function assignRole($roleName)
     {
-        $role = \forestyle\AdminRole::where('name', $roleName)->first();
+        $role = \App\AdminRole::where('name', $roleName)->first();
         return $this->roles()->save($role);
     }
 

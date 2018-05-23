@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -25,12 +25,12 @@ class AppServiceProvider extends ServiceProvider
         });
 
         \View::composer('layout.sidebar', function($view){
-            $topics = \forestyle\Topic::all();
+            $topics = \App\Topic::all();
             $view->with('topics', $topics);
         });
 //        Relation::morphMap([
-//            'fans' => \forestyle\Fan::class,
-//            'zans' => \forestyle\Zan::class,
+//            'fans' => \App\Fan::class,
+//            'zans' => \App\Zan::class,
 //        ]);
 
     }

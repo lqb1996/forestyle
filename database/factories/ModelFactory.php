@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(forestyle\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,12 +23,12 @@ $factory->define(forestyle\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(forestyle\Post::class, function(Faker\Generator $faker){
+$factory->define(App\Post::class, function(Faker\Generator $faker){
    return [
        'title' => $faker->sentence(6, true),
        'content' => $faker->text(500),
        'user_id' => function() {
-            return factory(\forestyle\User::class)->create()->id;
+            return factory(\App\User::class)->create()->id;
        }
    ];
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle\Jobs;
+namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -19,7 +19,7 @@ class SendMessage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(\forestyle\Notice $notice)
+    public function __construct(\App\Notice $notice)
     {
         $this->notice = $notice;
     }
@@ -31,7 +31,7 @@ class SendMessage implements ShouldQueue
      */
     public function handle()
     {
-        $users = \forestyle\User::all();
+        $users = \App\User::all();
         foreach ($users as $user) {
             $user->addNotice($this->notice);
         }

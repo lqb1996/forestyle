@@ -1,6 +1,6 @@
 <?php
 
-namespace forestyle;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
