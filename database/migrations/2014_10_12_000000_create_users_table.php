@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
 //            $table->string('avatar', 100)->default("");
             $table->string('openId');
+            $table->string('unionId');
             $table->string('nickName');
             $table->integer('gender');
             $table->string('language');
