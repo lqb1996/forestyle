@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5110abd-dcf2-47ad-b638-b473a6713285" name="Default" comment="login">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="373">
-              <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -438,7 +434,7 @@
       <workItem from="1527008859695" duration="805000" />
       <workItem from="1527039641287" duration="5252000" />
       <workItem from="1527091065223" duration="280000" />
-      <workItem from="1527091362551" duration="196000" />
+      <workItem from="1527091362551" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="login">
       <created>1527088336962</created>
@@ -458,7 +454,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="433042000" />
+    <option name="totallyTimeSpent" value="433454000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,7 +474,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49755502" weight="0.32704404" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32984293" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.495182" visible="true" weight="0.42033544" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.495182" weight="0.42033544" />
       <window_info anchor="right" id="Remote Host" order="4" weight="0.2857143" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49186993" visible="true" weight="0.17261904" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
@@ -673,7 +669,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
         </state>
       </provider>
     </entry>

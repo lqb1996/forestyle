@@ -58,7 +58,8 @@ class UserController extends Controller
 
     public function saveUserInfo(Request $request)
     {
-        return compact('request');
+        $userInfo = $request['userInfo'];
+        return compact('userInfo');
     }
 
     public function settingStore(Request $request, User $user)
