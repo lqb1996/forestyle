@@ -58,10 +58,7 @@ class UserController extends Controller
 
     public function saveUserInfo(Request $request)
     {
-        if(!$request['userInfo']) {
-            return false;
-        }
-        return true;
+        return compact('request');
     }
 
     public function settingStore(Request $request, User $user)
