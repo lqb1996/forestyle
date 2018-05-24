@@ -18,15 +18,22 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+//            'email' => 'required|email',
             'password' => 'required|min:6|max:30',
             'is_remember' => '',
         ]);
 
-        $user = request(['email', 'password']);
-        $remember = boolval(request('is_remember'));
-        if (true == \Auth::attempt($user, $remember)) {
-           return redirect('/posts');
+        if(strpos(request('email'), '@')){
+            $user = request(['email', 'password']);
+            $remember = boolval(request('is_remember'));
+            if (true == \Auth::attempt($user, $remember)) {
+            return redirect('/posts');
+            }
+        }else {
+            $user = array('openId' => request('email'), 'password' => request('password'));
+            if (true == \Auth::attempt($user)) {
+                return redirect('/posts');
+            }
         }
 
         return \Redirect::back()->withErrors("用户名密码错误");
