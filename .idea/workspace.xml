@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5110abd-dcf2-47ad-b638-b473a6713285" name="Default" comment="login">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-    </list>
+    <list default="true" id="c5110abd-dcf2-47ad-b638-b473a6713285" name="Default" comment="login" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -309,7 +307,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/../leafsnap" />
   </component>
   <component name="RecentsManager">
@@ -434,7 +432,7 @@
       <workItem from="1527008859695" duration="805000" />
       <workItem from="1527039641287" duration="5252000" />
       <workItem from="1527091065223" duration="280000" />
-      <workItem from="1527091362551" duration="608000" />
+      <workItem from="1527091362551" duration="1506000" />
     </task>
     <task id="LOCAL-00001" summary="login">
       <created>1527088336962</created>
@@ -454,7 +452,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="433454000" />
+    <option name="totallyTimeSpent" value="434352000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -467,7 +465,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32984293" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50481796" side_tool="true" weight="0.21256545" />
@@ -559,6 +556,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="MAXIMUM_HISTORY_ROWS" value="5000" />
     <MESSAGE value="login" />
     <option name="LAST_COMMIT_MESSAGE" value="login" />
   </component>
