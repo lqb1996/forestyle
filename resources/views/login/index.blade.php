@@ -37,7 +37,7 @@
         {{csrf_field()}}
         <h2 class="form-signin-heading">请登录</h2>
         <label for="inputEmail" class="sr-only">邮箱</label>
-        <input type="textarea" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
         <label for="inputPassword" class="sr-only">密码</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">

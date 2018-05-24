@@ -70,6 +70,11 @@ class LoginController extends Controller
                 .'&secret='.env('WECHAT_APP_SECRET')
                 .'&js_code='.$request['code'].'&grant_type=authorization_code';
         $res = json_decode($this->request_get($url), true);
+        if(array_key_exists('openid', $res)){
+            $openId = $res['openid'];
+            \App\User::firstOrCreate(compact('openId'));
+            \Auth::attempt(['openId' => $openId]);
+        }
         return compact('res');
 //        $this->validate($request, [
 //            'openId' => ''
