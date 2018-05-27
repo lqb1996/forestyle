@@ -37,7 +37,7 @@ class TopicController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:3'
+            'name' => 'required|min:1'
         ]);
 
         \App\Topic::create(request(['name']));
@@ -63,7 +63,8 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        $topics = \App\Topic::all();
+        return view('admin/topic/edit', compact('topic', 'topics'));
     }
 
     /**

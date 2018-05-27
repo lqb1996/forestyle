@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function() {
         // 专题模块
         Route::group(['middleware' => 'can:topic'], function(){
             Route::resource('topics', '\App\Admin\Controllers\TopicController', ['only' => [
-                'index', 'create', 'store', 'destroy'
+                'index', 'create', 'store', 'edit', 'update', 'destroy'
             ]]);
         });
 
