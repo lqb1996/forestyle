@@ -16,13 +16,19 @@
                             <tbody><tr>
                                 <th style="width: 10px">#</th>
                                 <th>文章标题</th>
+                                <th>所属专题</th>
                                 <th>操作</th>
                             </tr>
                             @foreach($posts as $post)
                             <tr>
                                 <td>{{$post->id}}.</td>
                                 <td>{{$post->title}}</td>
+                                <td>@foreach($post->topics as $topic)
+                                        {{$topic->name}}
+                                        @endforeach
+                                </td>
                                 <td>
+                                    <button type="button" class="btn btn-block btn-default post-redirect" post-id="{{$post->id}}" >话题分类</button>
                                     <button type="button" class="btn btn-block btn-default post-audit" post-id="{{$post->id}}" post-action-status="1" >通过</button>
                                     <button type="button" class="btn btn-block btn-default post-audit" post-id="{{$post->id}}" post-action-status="-1" >拒绝</button>
                                 </td>

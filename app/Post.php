@@ -89,6 +89,16 @@ class Post extends Model
         return $this->morphMany(\App\Relationship::class,'target');
     }
 
+    public function grantTopic($topic)
+    {
+        return $this->topics()->save($topic);
+    }
+
+    public function deleteTopic($topic)
+    {
+        return $this->topics()->detach($topic);
+    }
+
     public function scopeTopicNotBy(Builder $query, $topic_id)
     {
         return $query->doesntHave('postTopics', 'and', function($q) use ($topic_id) {

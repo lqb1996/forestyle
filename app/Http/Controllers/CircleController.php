@@ -26,6 +26,15 @@ class CircleController extends Controller
     public function circleList(Request $request)
     {
         $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('user', 'circleImgs')->withCount(["targets", "comments"])->paginate(20);
+        $user = \Auth::user();
+        foreach($circles as &$circle)
+        {
+            if($user->hasZan($circle->id, 'App\Circle')){
+                $circle['hasZan'] = 1;
+            }else {
+                $circle['hasZan'] = 0;
+            }
+        }
         return compact('circles');
     }
 
@@ -63,7 +72,8 @@ class CircleController extends Controller
     {
         $circle = Circle::with('user', 'comments.user', 'circleImgs', 'targets')->find($circle->id);
         $hasZan = \Auth::user()->hasZan($circle->id, 'App\Circle');
-        return compact('circle', 'hasZan');
+        $circle['hasZan'] = $hasZan;
+        return compact('circle');
     }
 
     public function update(Request $request, Circle $circle)

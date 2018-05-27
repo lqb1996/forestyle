@@ -59,7 +59,10 @@ class UserController extends Controller
     public function saveUserInfo(Request $request)
     {
         $userInfo = $request['userInfo'];
-        return compact('userInfo');
+//        $userInfo = json_decode($userInfo, true);
+        $user = \Auth::user();
+        $user->update($userInfo);
+        return compact('user');
     }
 
     public function settingStore(Request $request, User $user)

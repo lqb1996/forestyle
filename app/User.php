@@ -54,9 +54,15 @@ class User extends Authenticatable
     {
         return $this->fans()->where('user_id', $uid)->count();
     }
+
     public function hasZan($target_id,$target_type)
     {
         return $this->relationships()->where(['target_id' => $target_id,'target_type' => $target_type])->count();
+    }
+
+    public function zans($target_type)
+    {
+        return $this->relationships()->where('target_type', $target_type)->get();
     }
 
     /*

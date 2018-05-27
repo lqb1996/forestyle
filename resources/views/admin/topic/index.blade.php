@@ -25,7 +25,10 @@
                                     <td>{{$topic->id}}</td>
                                     <td>{{$topic->name}}</td>
                                     <td>
+                                        <a type="button" class="btn resource-delete" delete-url="/admin/topics/{{$topic->id}}" href="#" >修改</a>
+                                        @if($topic->id > 13)
                                         <a type="button" class="btn resource-delete" delete-url="/admin/topics/{{$topic->id}}" href="#" >删除</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

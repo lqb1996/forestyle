@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::group(['middleware' => 'can:post'], function() {
             // 文章管理
             Route::get('/posts', '\App\Admin\Controllers\PostController@index');
+            Route::get('/posts/{post}/topic', '\App\Admin\Controllers\PostController@topic');
+            Route::post('/posts/{post}/store', '\App\Admin\Controllers\PostController@storeTopic');
             Route::post('/posts/{post}/status', '\App\Admin\Controllers\PostController@status');
         });
 

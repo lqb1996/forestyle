@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -62,20 +63,34 @@ class LoginController extends Controller
 
     public function loginWeChat(Request $request)
     {
-        if(!$request['code']){
-            return null;
-        }
+//        if(!$request['code']){
+//            $openId = 'oEvBM5QQ0ALCzyDVe5jSbQo9pZ1U';
+//            $password = bcrypt($openId);
+//            \App\User::firstOrCreate(compact('openId', 'password'));
+//            \Auth::attempt(array('openId'=>$openId, 'password'=>$openId));
+//            $user = \Auth::user();
+//            return compact('user');
+//        }
         $url = 'https://api.weixin.qq.com/sns/jscode2session?appid='
                 .env('WECHAT_APPID')
                 .'&secret='.env('WECHAT_APP_SECRET')
                 .'&js_code='.$request['code'].'&grant_type=authorization_code';
         $res = json_decode($this->request_get($url), true);
+        $user = null;
         if(array_key_exists('openid', $res)){
             $openId = $res['openid'];
-            \App\User::firstOrCreate(compact('openId'));
-            \Auth::attempt(['openId' => $openId]);
+            $password = bcrypt($openId);
+            if(true == \Auth::attempt(array('openId'=>$openId, 'password'=>$openId))){
+                $user = \Auth::user();
+            }else {
+                \App\User::updateOrCreate(compact('openId'), compact('openId', 'password'));
+//                \App\User::where('openId', $openId) -> update('password', $password);
+                \Auth::attempt(array('openId'=>$openId, 'password'=>$openId));
+                $user = \Auth::user();
+            }
+
         }
-        return compact('res');
+        return compact('res', 'user');
 //        $this->validate($request, [
 //            'openId' => ''
 //        ]);
