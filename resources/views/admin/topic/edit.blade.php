@@ -15,8 +15,8 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="/admin/topics/{{$topic->id}}" method="POST">
-                            @method('PUT')
+                        <form role="form" action="/admin/topics/{{$topic->id}}" method="POST" enctype="multipart/form-data">
+                            {{method_field("PATCH")}}
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
@@ -25,10 +25,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">上级专题</label>
-                                    <select>
+                                    <select name="parent_id">
+                                        <option value="0">------------</option>
                                         @foreach($topics as $t)
-                                        <option value="{{$t->id}}">{{$t->name}}</option>
+                                        <option value="{{$t->id}}"
+                                        @if($t->id == $topic->parent_id) selected @endif
+                                        >{{$t->name}}</option>
+                                        @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">封面图片</label>
+                                    <div class="form-control">
+                                        <input class=" file-loading preview_input" type="file" value="用户名" style="width:150px" name="imgUrl">
+                                        <img  class="preview_img" src="{{$topic->imgUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->

@@ -18,12 +18,14 @@
                             <tbody><tr>
                                 <th style="width: 10px">#</th>
                                 <th>专题名称</th>
+                                <th>上级专题</th>
                                 <th>操作</th>
                             </tr>
                             @foreach($topics as $topic)
                                 <tr>
                                     <td>{{$topic->id}}</td>
                                     <td>{{$topic->name}}</td>
+                                    <td>{{$topic->parent?$topic->parent->name:''}}</td>
                                     <td>
                                         <a type="button" href="/admin/topics/{{$topic->id}}/edit" >修改</a>
                                         @if($topic->id > 13)

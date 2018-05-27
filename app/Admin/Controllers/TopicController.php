@@ -14,7 +14,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = \App\Topic::all();
+        $topics = \App\Topic::with('parent')->get();
         return view('admin/topic/index', compact('topics'));
     }
 
@@ -25,7 +25,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('admin/topic/create');
+        $topics = \App\Topic::all();
+        return view('admin/topic/create', compact('topics'));
     }
 
     /**
@@ -39,8 +40,12 @@ class TopicController extends Controller
         $this->validate($request, [
             'name' => 'required|min:1'
         ]);
-
-        \App\Topic::create(request(['name']));
+        $imgUrl = "";
+        if ($request->file('imgUrl')) {
+            $path = $request->file('imgUrl')->storePublicly(md5(\Auth::id() . time()));
+            $imgUrl = env('APP_URL')."/storage/". $path;
+        }
+        \App\Topic::create(array_merge(request(['name', 'parent_id']), ['imgUrl' => $imgUrl]));
         return redirect('/admin/topics');
     }
 
@@ -77,6 +82,13 @@ class TopicController extends Controller
     public function update(Request $request, Topic $topic)
     {
         //
+        $topic->update(request(['name', 'parent_id']));
+        if ($request->file('imgUrl')) {
+            $path = $request->file('imgUrl')->storePublicly(md5(\Auth::id() . time()));
+            $imgUrl = env('APP_URL')."/storage/". $path;
+            $topic->update(['imgUrl' => $imgUrl]);
+        }
+        return redirect('/admin/topics');
     }
 
     /**
