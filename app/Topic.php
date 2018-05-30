@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Scopes\StatusScope;
+
 class Topic extends Model
 {
     protected $table = "topics";
@@ -23,5 +25,10 @@ class Topic extends Model
     public function children()
     {
         return $this->hasMany(get_class($this), 'parent_id', $this->getKeyName());
+    }
+
+    public function scopeAviable($query)
+    {
+        return $query->whereIn('status', [1]);
     }
 }

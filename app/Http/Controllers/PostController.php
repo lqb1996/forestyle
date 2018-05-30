@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Topic;
 use Illuminate\Support\Facades\Auth;
+use App\Scopes\StatusScope;
 
 class PostController extends Controller
 {
@@ -19,7 +20,7 @@ class PostController extends Controller
         $user = \Auth::user();
         $banners = Topic::with('posts')->find(1);
         $recommends = Topic::with('children')->find(2);
-        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['topics'])->paginate(6);
+        $posts = Post::aviable()->orderBy('created_at', 'desc')->withCount(["targets", "comments"])->with(['topics'=>function($query){return $query->aviable();}])->paginate(6);
         if($request['type'] == 'ajax'){
             return compact('posts','banners','recommends');
         }
@@ -33,7 +34,7 @@ class PostController extends Controller
     {
         $user = \Auth::user();
 //        $banners = Topic::find(1)->with('posts')->get();
-        $topics = Topic::with('posts.topics')->where('parent_id', 8)->orderBy('created_at', 'desc')->get();
+        $topics = Topic::aviable()->with(['posts.topics' => function($query){return $query->aviable();}])->where('parent_id', 8)->orderBy('created_at', 'desc')->get();
         return compact('topics');
     }
     /*
@@ -82,7 +83,7 @@ class PostController extends Controller
 
     public function show(Request $request, \App\Post $post)
     {
-        $post = Post::with('comments.user', 'targets', 'user', 'topics')->find($post->id);
+        $post = Post::with(['comments.user', 'targets', 'user','topics' => function($query){return $query->aviable();}])->find($post->id);
         $hasZan = \Auth::user()->hasZan($post->id, 'App\Post');
         if($request['type'] == 'ajax'){
             return compact('post', 'hasZan');

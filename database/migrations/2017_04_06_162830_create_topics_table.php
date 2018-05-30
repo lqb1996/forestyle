@@ -18,6 +18,7 @@ class CreateTopicsTable extends Migration
             $table->integer('parent_id');
             $table->string('imgUrl');
             $table->string('name', 100); // 主题的姓名
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
 
