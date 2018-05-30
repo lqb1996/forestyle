@@ -13,9 +13,9 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">头像</label>
-                <div class="col-sm-2">
+                <div>
                     <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="avatarUrl">
-                    <img  class="preview_img" src="{{$me->avatarUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
+                    <img style="max-height: 300px;" class="preview_img" src="{{$me->avatarUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
                 </div>
             </div>
             <button type="submit" class="btn btn-default">修改</button>

@@ -38,7 +38,7 @@
                                     <label for="exampleInputEmail1">封面图片</label>
                                     <div class="form-control">
                                         <input class=" file-loading preview_input" type="file" value="用户名" style="width:150px" name="imgUrl">
-                                        <img  class="preview_img" src="{{$topic->imgUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
+                                        <img style="max-height: 300px;" class="preview_img" src="{{$topic->imgUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
                                     </div>
                                 </div>
                             </div>

@@ -15,11 +15,14 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">封面图片</label>
-                <div class="col-sm-2">
+                {{--<div class="col-sm-2">--}}
+                <div>
                     <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="imgUrl">
-                    <img  class="preview_img" src="" alt="" class="img-rounded" style="border-radius:500px;">
+                    <img style="max-height: 300px;" class="preview_img" src="" alt="" class="img-rounded" style="border-radius:500px;">
                 </div>
-            </div></br>
+            </div>
+            {{--<div style="height: 300px;"></div>--}}
+            </br>
             <div class="form-group">
                 <label>内容</label>
                 <textarea id="content"  style="height:400px;max-height:500px;" name="content" class="form-control" placeholder="这里是内容"></textarea>

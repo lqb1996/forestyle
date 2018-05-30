@@ -16,9 +16,9 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">封面图片</label>
-                <div class="col-sm-2">
+                <div>
                     <input class=" file-loading preview_input" type="file" value="用户名" style="width:72px" name="imgUrl">
-                    <img  class="preview_img" src="{{$post->imgUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
+                    <img style="max-height: 300px;" class="preview_img" src="{{$post->imgUrl}}" alt="" class="img-rounded" style="border-radius:500px;">
                 </div>
             </div>
             <div class="form-group">
