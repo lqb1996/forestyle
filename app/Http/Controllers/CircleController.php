@@ -17,8 +17,8 @@ class CircleController extends Controller
     public function index(Request $request)
     {
         $user = \Auth::user();
-        $banners = Topic::withoutGlobalScopes()->with('posts')->find(1);
-        $hotTopic = Topic::withoutGlobalScopes()->where('parent_id', 13)->get();
+        $banners = Topic::with('posts')->find(1);
+        $hotTopic = Topic::where('parent_id', 13)->get();
         $circles = Circle::aviable()->orderBy('created_at', 'desc')->with('user', 'circleImgs')->withCount(["targets", "comments"])->paginate(20);
         return compact('banners', 'hotTopic', 'circles');
     }

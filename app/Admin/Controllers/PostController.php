@@ -45,7 +45,6 @@ class PostController extends Controller
         $topics = \App\Topic::find(request('topics'));
         $myTopics = $post->topics;
 
-        // 对已经有的权限
         $addTopics = $topics->diff($myTopics);
         foreach ($addTopics as $topic) {
             $post->grantTopic($topic);
@@ -55,7 +54,9 @@ class PostController extends Controller
         foreach ($deleteTopics as $topic) {
             $post->deleteTopic($topic);
         }
-        return back();
+
+        $posts = \App\Post::with('topics')->orderBy('created_at', 'desc')->paginate(10);
+        return view('/admin/post/index', compact('posts'));
     }
 
 }
