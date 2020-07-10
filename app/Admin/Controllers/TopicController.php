@@ -14,7 +14,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = \App\Topic::with('parent')->get();
+        $topics = \App\Topic::with('parent')->all();
         return view('admin/topic/index', compact('topics'));
     }
 
